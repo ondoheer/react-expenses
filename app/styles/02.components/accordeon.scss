@@ -1,0 +1,39 @@
+.c-accordeon{
+    max-width: 320px;
+    margin: 0 auto;
+    border: 1px solid grey;
+    padding: 0 5px;
+    border-radius: 2px;
+
+    &__month, &__detail{
+        width: 100%;
+    }
+
+    &__month{
+        font-size: 1.3em;
+        border-bottom: 1px solid grey;
+        padding: 5px 10px;
+        line-height: 1.5;
+
+        &:last-child{
+            border: none;
+        }
+
+        &--plus::after{
+            content: "\002B";
+            float: right;
+        }
+
+        &--minus::after{
+            content:"\2212";
+            float: right;
+        }
+    }
+
+    &__detail{
+        padding-left: 15px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        line-height: 1.3;
+    }
+}

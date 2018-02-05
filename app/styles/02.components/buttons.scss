@@ -1,0 +1,50 @@
+.c-button{
+
+    background: none;
+    border: none;
+
+    &--large{
+        font-size: 40px;
+        line-height: 70px;
+
+    }
+
+    &--full-bottom{
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+    }
+
+    &--red{
+        background-color: $red;
+        color: white;
+    }
+
+    &--dark-red{
+        background-color: $dark-red;
+        color: white;
+    }
+
+    &--dark-green{
+        background-color: $dark-green;
+        color: white;
+    }
+
+    &--dark-blue{
+        background-color: $dark-blue;
+        color:  white;
+    }
+
+    &--submit{
+
+            margin-top: 30px;
+            font-size: 30px;
+            width: 100%;
+            line-height: 1.5;
+
+            &:focus{
+
+                font-size:25px;
+            }
+    }
+}
