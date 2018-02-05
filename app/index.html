@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!--
+  <title></title>
+  <meta name="description" content="">
+  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--<link rel="stylesheet" href="style.css">-->
+</head>
+<body>
+  <!-- <main id="app"></main> -->
+
+  <nav class="c-top-nav">
+    <ul class="c-top-nav__list">
+      <li class="c-top-nav__item current-item"><a>Home</a></li>
+      <li class="c-top-nav__item"><a>Expenses</a></li>
+      <li class="c-top-nav__item"><a>Categories</a></li>
+      <li class="c-top-nav__item"><a>Logout</a><li>
+    </ul>
+  </nav>
+  <!-- end of nav -->
+
+  <div class="c-total-expenses">
+
+    <div class="c-total-expenses__item c-total-expenses__title ">Total expenses </div>
+    <div class="c-total-expenses__current-month">february</div>
+    <div class="c-total-expenses__item c-total-expenses__amount">
+
+     S/ 12,950.00
+    </div>
+</div> <!--  end of total expenses -->
+
+<div class="c-accordeon">
+
+  <div class="c-accordeon__month c-accordeon__month--minus">February - S/ 12,950.00</div>
+  <div class="c-accordeon__detail">
+    <ul class="c-accordeon__detail__list">
+      <li class="c-accordeon__detail__list__item">Groceries - S/345.78</li>
+      <li class="c-accordeon__detail__list__item">Transportation - S/128.00</li>
+      <li class="c-accordeon__detail__list__item">Rent - S/1250.00</li>
+      <li class="c-accordeon__detail__list__item">Services - S/567.00</li>
+    </ul>
+  </div>
+  <!-- end if accordeon month -->
+  <div class="c-accordeon__month c-accordeon__month--plus">January - S/ 11,450.00 </div>
+  <div class="c-accordeon__month c-accordeon__month--plus">December - S/ 10,780.00</div>
+  <div class="c-accordeon__month c-accordeon__month--plus">November - S/ 12,334.00</div>
+  <div class="c-accordeon__month c-accordeon__month--plus">October - S/ 12,950.00</div>
+  <div class="c-accordeon__month c-accordeon__month--plus">September - S/ 12,950.00</div>
+</div>
+
+
+  <button class="c-button c-button--full-bottom c-button--large c-button--red">Add Expense</button>
+</body>
+</html>

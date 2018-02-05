@@ -1,0 +1,9 @@
+@import 'styles/00.resets/reset';
+
+@import 'styles/01.settings/variables',
+        'styles/01.settings/queries';
+@import 'styles/02.components/components';
+
+body {
+  font-family: sans-serif;
+}

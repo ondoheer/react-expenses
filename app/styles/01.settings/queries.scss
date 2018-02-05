@@ -1,0 +1,11 @@
+@mixin t-mq-min($breakpoint) {
+	@media (min-width: map-get($s-breakpoints, $breakpoint)) {
+		@content;
+	}
+}
+
+@mixin t-mq-max($breakpoint) {
+	@media (max-width: map-get($s-breakpoints, $breakpoint)) {
+		@content;
+	}
+}
