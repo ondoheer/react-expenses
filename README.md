@@ -1,13 +1,14 @@
 ## React-Redux Boilerplate
 
 A starter kit for react and redux, with a few bells and whistles, including
+
 * es6 transpilation
 * linting
 * hot reloading
 * scss compilation
 
-
 ### Installation
+
 ```bash
 npm install
 ```
@@ -24,11 +25,12 @@ npm run dev
 npm run validate
 ```
 
-
 ## Actions
 
 * create expense
 * create category
+* Get expenses?
+* Get home data?
 * Login
 * Register
 * Refresh token
