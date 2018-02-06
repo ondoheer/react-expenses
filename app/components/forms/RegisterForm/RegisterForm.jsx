@@ -32,7 +32,7 @@ const RegisterForm = () => (
       />
 
       <button className="c-button c-button--submit c-button--dark-green">
-        Login
+        Register
       </button>
     </div>
   </div>

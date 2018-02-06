@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
-import expenses            from './modules/expenses';
+
+import accordeon from './modules/accordeon';
 
 export default combineReducers({
-  expenses,
+  accordeon
 });

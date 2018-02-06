@@ -1,15 +1,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
-const webpack             = require('webpack');
-const path                = require('path');
-const HtmlWebpackPlugin   = require('html-webpack-plugin');
-const CopyWebpackPlugin   = require('copy-webpack-plugin');
-const childProcess        = require('child_process');
-
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const childProcess = require('child_process');
 
 const HOST = 'localhost';
 const PORT = process.env.PORT || 4000;
 const DEV_PROXY = process.env.DEV_PROXY || 'http://localhost:3000';
-
 
 module.exports = {
   // entry: [
@@ -18,16 +16,13 @@ module.exports = {
   //   './app/index.jsx',
   // ],
   entry: {
-    app: [
-      'babel-polyfill',
-      './app/index.jsx',
-    ],
+    app: ['babel-polyfill', './app/index.jsx']
   },
 
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: '/',
-    filename: 'index.js',
+    filename: 'index.js'
   },
 
   module: {
@@ -35,21 +30,18 @@ module.exports = {
       {
         test: /\.jsx?$/,
         include: path.join(__dirname, 'app'),
-        use: [
-          'react-hot-loader',
-          'babel-loader',
-        ],
+        use: ['react-hot-loader', 'babel-loader']
       },
       {
         test: /\.scss$/,
         include: path.join(__dirname, 'app'),
-        loader: 'style-loader!css-loader!sass-loader?sourceMap',
+        loader: 'style-loader!css-loader!sass-loader?sourceMap'
       },
       {
         test: /\.(woff2?|svg)$/,
-        loader: 'url-loader?limit=10000',
-      },
-    ],
+        loader: 'url-loader?limit=10000'
+      }
+    ]
   },
 
   plugins: [
@@ -60,10 +52,10 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('development'),
       'process.env.__GIT_DESCRIPTION__': JSON.stringify(
         childProcess.execSync('git describe --always').toString()
-      ),
+      )
     }),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ],
 
   devtool: 'eval-source-map',
@@ -73,7 +65,7 @@ module.exports = {
     host: HOST,
     port: PORT,
     historyApiFallback: true,
-    hot: true,
+    hot: false,
     inline: true,
     clientLogLevel: 'none',
     stats: 'errors-only',
@@ -81,12 +73,12 @@ module.exports = {
       '/api/*': {
         target: DEV_PROXY,
         secure: false,
-        changeOrigin: true,
-      },
-    },
+        changeOrigin: true
+      }
+    }
   },
 
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.scss'],
-  },
+    extensions: ['.js', '.jsx', '.json', '.scss']
+  }
 };
