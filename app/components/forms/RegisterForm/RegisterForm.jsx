@@ -2,7 +2,7 @@ import React from 'react';
 
 const RegisterForm = props => (
   <div className="c-form-container u-bkg--green">
-    <form className="c-form c-form--login">
+    <form className="c-form c-form--login" onSubmit={props.registerHandler}>
       <label htmlFor="fullname" className="c-form__label">
         Full name
       </label>

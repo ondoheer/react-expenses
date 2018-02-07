@@ -1,3 +1,5 @@
+import history from '../../index';
+
 /**
  * constants
  */
@@ -9,6 +11,7 @@ export const SET_PASSWORD = 'SET_PASSWORD';
 export const SET_FULLNAME = 'SET_FULLNAME';
 export const SET_CONFIRM = 'SET_CONFIRM';
 export const CLEAR_AUTH_FORMS_DATA = 'CLEAR_AUTH_FORMS_DATA';
+export const REGISTER_ERROR = 'REGISTER_ERROR';
 
 /**
  * action creators
@@ -17,6 +20,10 @@ export const authenticated = { type: AUTHENTICATED };
 export const unauthenticated = { type: UNAUTHENTICATED };
 export const authError = error => ({
   type: AUTHENTICATION_ERROR,
+  payload: error
+});
+export const registerError = error => ({
+  type: REGISTER_ERROR,
   payload: error
 });
 export const clearAuthFormsData = {
@@ -58,10 +65,12 @@ export default (
 ) => {
   switch (action.type) {
     case AUTHENTICATED:
-      return { ...state, authenticated: true };
+      return state;
     case UNAUTHENTICATED:
-      return { ...state, authenticated: false };
+      return state;
     case AUTHENTICATION_ERROR:
+      return { ...state, error: action.payload };
+    case REGISTER_ERROR:
       return { ...state, error: action.payload };
     case SET_EMAIL:
       return { ...state, emailInput: action.value };
@@ -73,6 +82,7 @@ export default (
       return { ...state, fullNameInput: action.value };
     case CLEAR_AUTH_FORMS_DATA:
       return { ...state, emailInput: '', passwordInput: '' };
+
     default:
       return state;
   }
@@ -82,18 +92,21 @@ export default (
  * epics
  */
 const URL = 'http://localhost:5000';
+const BaseParams = {
+  method: 'POST',
+  mode: 'cors',
+  headers: new Headers({ 'Content-Type': 'application/json' })
+};
 
 export const loginAction = () => {
   return (dispatch, getState) => {
     const state = getState();
     const params = {
-      method: 'POST',
-      mode: 'cors',
+      ...BaseParams,
       body: JSON.stringify({
         email: state.auth.emailInput,
         password: state.auth.passwordInput
-      }),
-      headers: new Headers({ 'Content-Type': 'application/json' })
+      })
     };
     const res = fetch(`${URL}/login`, params)
       .then(res => {
@@ -107,11 +120,49 @@ export const loginAction = () => {
         dispatch({ type: CLEAR_AUTH_FORMS_DATA });
         localStorage.setItem('access_token', json.access_token);
         localStorage.setItem('refresh_token', json.refresh_token);
-        window.location = '/';
+        history.push('/');
       })
       .catch(error => {
         dispatch({
           type: AUTHENTICATION_ERROR,
+          payload: 'Auth general error'
+        });
+      });
+  };
+};
+
+export const registerAction = () => {
+  return (dispatch, getState) => {
+    const state = getState();
+
+    const params = {
+      ...BaseParams,
+      body: JSON.stringify({
+        email: state.auth.emailInput,
+        password: state.auth.passwordInput,
+        fullname: state.auth.fullNameInput,
+        confirm: state.auth.confirmInput
+      })
+    };
+
+    const res = fetch(`${URL}/register`, params)
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then(json => {
+        console.log(json);
+        dispatch({ type: AUTHENTICATED });
+        dispatch({ type: CLEAR_AUTH_FORMS_DATA });
+        localStorage.setItem('access_token', json.access_token);
+        localStorage.setItem('refresh_token', json.refresh_token);
+        history.push('/');
+      })
+      .catch(error => {
+        dispatch({
+          type: REGISTER_ERROR,
           payload: 'Invalid email or password'
         });
       });

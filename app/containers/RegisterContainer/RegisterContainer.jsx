@@ -7,7 +7,8 @@ import {
   setPassword,
   setEmail,
   setFullName,
-  setConfirm
+  setConfirm,
+  registerAction
 } from '../../redux/modules/auth';
 
 const mapStateToProps = state => ({
@@ -30,6 +31,11 @@ const mapDispatchToProps = dispatch => {
     },
     setConfirm: evt => {
       dispatch(setConfirm(evt.target.value));
+    },
+    registerHandler: evt => {
+      console.log(evt);
+      evt.preventDefault;
+      dispatch(registerAction());
     }
   };
 };
@@ -40,6 +46,7 @@ const RegisterContainer = props => (
       setPassword={props.setPassword}
       setFullName={props.setFullName}
       setConfirm={props.setConfirm}
+      registerHandler={props.registerHandler}
     />
   </div>
 );
