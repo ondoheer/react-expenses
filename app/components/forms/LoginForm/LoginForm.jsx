@@ -1,13 +1,23 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const LoginForm = () => (
+const LoginForm = props => (
   <div className="c-form-container u-bkg--green">
-    <div className="c-form c-form--login">
+    <form
+      method="POST"
+      className="c-form c-form--login"
+      onSubmit={props.loginHandler}
+    >
       <label htmlFor="email" className="c-form__label">
         Email
       </label>
-      <input className="c-form__input" id="email" type="text" />
+      <input
+        className="c-form__input"
+        id="email"
+        type="text"
+        onChange={props.setEmail}
+        value={props.emailImput}
+      />
 
       <label htmlFor="password" className="c-form__label">
         Password
@@ -17,6 +27,8 @@ const LoginForm = () => (
         type="password"
         id="password"
         name="password"
+        onChange={props.setPassword}
+        value={props.passwordInput}
       />
 
       <button className="c-button c-button--submit c-button--dark-green">
@@ -31,7 +43,7 @@ const LoginForm = () => (
           ?
         </p>
       </div>
-    </div>
+    </form>
   </div>
 );
 

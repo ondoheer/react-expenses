@@ -19,45 +19,51 @@ export default (
     months: [
       {
         id: '2018-2-4',
-        categories: {
-          '3': {
+        categories: [
+          {
+            id: '3',
             amount: 23.5,
             label: 'Taxi',
             name: 'taxi'
           },
-          '2': {
+          {
+            id: '2',
             amount: 305.5,
             label: 'Clothing',
             name: 'clothing'
           },
-          '1': {
+          {
+            id: '1',
             amount: 305.5,
             label: 'Groceries',
             name: 'groceries'
           }
-        },
+        ],
         total: 634.5,
         open: false
       },
       {
         id: '2018-1-4',
-        categories: {
-          '3': {
-            amount: 2305.5,
+        categories: [
+          {
+            id: '3',
+            amount: 23.5,
             label: 'Taxi',
             name: 'taxi'
           },
-          '2': {
-            amount: 5305.5,
+          {
+            id: '2',
+            amount: 305.5,
             label: 'Clothing',
             name: 'clothing'
           },
-          '1': {
-            amount: 1305.5,
+          {
+            id: '1',
+            amount: 305.5,
             label: 'Groceries',
             name: 'groceries'
           }
-        },
+        ],
         total: 8646.5,
         open: false
       }

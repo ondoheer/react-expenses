@@ -23,7 +23,7 @@ const mapDispatchToProps = dispatch => {
 const HomeContainer = ({ toggleAccordeon, months }) => (
   <div className="home-container">
     <HeaderNav />
-    <TotalExpenses />
+    <TotalExpenses month={months[0]} />
     <MonthsAccordeon toggleAccordeon={toggleAccordeon} months={months} />
     <AddExpenseButton />
   </div>

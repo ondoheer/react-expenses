@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { yearMonthUserConverter } from '../../../utils/utils';
+
 const MonthTab = props => (
   <div
     className={`c-accordeon__month-tab c-accordeon__month-tab${
@@ -7,7 +9,7 @@ const MonthTab = props => (
     }`}
     onClick={() => props.toggleAccordeon(props.index)}
   >
-    February - S/ 12,950.00
+    {yearMonthUserConverter(props.month.id).month} - S/ {props.month.total}
   </div>
 );
 
