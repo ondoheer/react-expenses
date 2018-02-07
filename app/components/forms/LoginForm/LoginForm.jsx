@@ -3,11 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const LoginForm = props => (
   <div className="c-form-container u-bkg--green">
-    <form
-      method="POST"
-      className="c-form c-form--login"
-      onSubmit={props.loginHandler}
-    >
+    <form className="c-form c-form--login" onSubmit={props.loginHandler}>
       <label htmlFor="email" className="c-form__label">
         Email
       </label>

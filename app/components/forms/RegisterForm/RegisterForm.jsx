@@ -1,17 +1,29 @@
 import React from 'react';
 
-const RegisterForm = () => (
+const RegisterForm = props => (
   <div className="c-form-container u-bkg--green">
-    <div className="c-form c-form--login">
+    <form className="c-form c-form--login">
       <label htmlFor="fullname" className="c-form__label">
         Full name
       </label>
-      <input className="c-form__input" type="text" id="fullname" />
+      <input
+        className="c-form__input"
+        type="text"
+        id="fullname"
+        onChange={props.setFullName}
+        value={props.fullNameInput}
+      />
 
       <label htmlFor="email" className="c-form__label">
         Email
       </label>
-      <input className="c-form__input" type="email" id="email" />
+      <input
+        className="c-form__input"
+        type="email"
+        id="email"
+        onChange={props.setEmail}
+        value={props.emailInput}
+      />
 
       <label htmlFor="password" className="c-form__label">
         Password
@@ -20,6 +32,8 @@ const RegisterForm = () => (
         id="password"
         className="c-form__input c-form__input--password"
         type="password"
+        onChange={props.setPassword}
+        value={props.passwordInput}
       />
 
       <label htmlFor="confirm" className="c-form__label">
@@ -29,12 +43,14 @@ const RegisterForm = () => (
         id="confirm"
         className="c-form__input c-form__input--password"
         type="password"
+        onChange={props.setConfirm}
+        value={props.confirmInput}
       />
 
       <button className="c-button c-button--submit c-button--dark-green">
         Register
       </button>
-    </div>
+    </form>
   </div>
 );
 

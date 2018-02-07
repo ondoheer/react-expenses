@@ -6,6 +6,8 @@ export const UNAUTHENTICATED = 'UNAUTHENTICATED';
 export const AUTHENTICATION_ERROR = 'AUTHENTICATION_ERROR';
 export const SET_EMAIL = 'SET_EMAIL';
 export const SET_PASSWORD = 'SET_PASSWORD';
+export const SET_FULLNAME = 'SET_FULLNAME';
+export const SET_CONFIRM = 'SET_CONFIRM';
 export const CLEAR_AUTH_FORMS_DATA = 'CLEAR_AUTH_FORMS_DATA';
 
 /**
@@ -31,6 +33,16 @@ export const setPassword = value => ({
   value
 });
 
+export const setFullName = value => ({
+  type: SET_FULLNAME,
+  value
+});
+
+export const setConfirm = value => ({
+  type: SET_CONFIRM,
+  value
+});
+
 /**
  * reducer
  */
@@ -38,6 +50,8 @@ export default (
   state = {
     emailInput: '',
     passwordInput: '',
+    fullNameInput: '',
+    confirmInput: '',
     authenticated: false
   },
   action
@@ -53,6 +67,10 @@ export default (
       return { ...state, emailInput: action.value };
     case SET_PASSWORD:
       return { ...state, passwordInput: action.value };
+    case SET_CONFIRM:
+      return { ...state, confirmInput: action.value };
+    case SET_FULLNAME:
+      return { ...state, fullNameInput: action.value };
     case CLEAR_AUTH_FORMS_DATA:
       return { ...state, emailInput: '', passwordInput: '' };
     default:

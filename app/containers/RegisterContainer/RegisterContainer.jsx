@@ -1,11 +1,47 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import RegisterForm from '../../components/forms/RegisterForm';
+import {
+  // RegisterAction,
+  setPassword,
+  setEmail,
+  setFullName,
+  setConfirm
+} from '../../redux/modules/auth';
 
-const RegisterContainer = () => (
+const mapStateToProps = state => ({
+  emailInput: state.auth.emailInput,
+  passwordInput: state.auth.passwordInput,
+  fullNameInput: state.auth.fullNameInput,
+  confirmInput: state.auth.confirmInput
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setEmail: evt => {
+      dispatch(setEmail(evt.target.value));
+    },
+    setPassword: evt => {
+      dispatch(setPassword(evt.target.value));
+    },
+    setFullName: evt => {
+      dispatch(setFullName(evt.target.value));
+    },
+    setConfirm: evt => {
+      dispatch(setConfirm(evt.target.value));
+    }
+  };
+};
+const RegisterContainer = props => (
   <div className="home-container">
-    <RegisterForm />
+    <RegisterForm
+      setEmail={props.setEmail}
+      setPassword={props.setPassword}
+      setFullName={props.setFullName}
+      setConfirm={props.setConfirm}
+    />
   </div>
 );
 
-export default RegisterContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer);
