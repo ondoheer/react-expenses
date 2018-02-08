@@ -7,7 +7,8 @@ import AddCategoryForm from '../../components/forms/AddCategoryForm';
 
 import {
   setCategoryName,
-  getCategoriesAction
+  getCategoriesAction,
+  addCategoryAction
 } from '../../redux/modules/categories';
 
 const mapStateToProps = state => ({
@@ -22,6 +23,10 @@ const mapDispatchToProps = dispatch => {
     },
     getCategories: () => {
       dispatch(getCategoriesAction());
+    },
+    addCategoryHandler: evt => {
+      evt.preventDefault;
+      dispatch(addCategoryAction());
     }
   };
 };
@@ -31,7 +36,8 @@ const AddCategoryContainer = props => (
     <HeaderNav />
     <AddCategoryForm
       categories={props.categories}
-      setCategoryName={setCategoryName}
+      setCategoryName={props.setCategoryName}
+      addCategoryHandler={props.addCategoryHandler}
     />
   </div>
 );

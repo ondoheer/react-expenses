@@ -13,10 +13,13 @@ export const GET_CATEGORIES = 'GET_CATEGORIES';
 /**
  * action creators
  */
-export const categoryAdded = { type: CATEGORY_ADDED };
 export const clearAddCategoryForm = { type: CLEAR_ADD_CATEGORY_FORM };
 export const getCategories = { type: GET_CATEGORIES };
 
+export const categoryAdded = data => ({
+  type: CATEGORY_ADDED,
+  category: data
+});
 export const addCategoryError = error => ({
   type: ADD_CATEGORY_ERROR,
   payload: error
@@ -42,6 +45,10 @@ export default (
       return { ...state, nameInput: action.value };
     case GET_CATEGORIES:
       return { ...state, categories: action.data };
+    case CATEGORY_ADDED:
+      return { ...state, categories: [...state.categories, action.category] };
+    case CLEAR_ADD_CATEGORY_FORM:
+      return { ...state, nameInput: '' };
 
     default:
       return state;
@@ -65,7 +72,7 @@ export const getCategoriesAction = () => {
       throw new Error('Un authorized request');
       history.push('/login');
     }
-    BaseParams.headers.append('Authorization', `Bearer ${access_token}`);
+    BaseParams.headers.set('Authorization', `Bearer ${access_token}`);
     const params = {
       ...BaseParams,
       method: 'GET'
@@ -99,17 +106,16 @@ export const addCategoryAction = () => {
       throw new Error('Un authorized request');
       history.push('/login');
     }
-    BaseParams.headers.append('Authorization', `Bearer ${access_token}`);
+    BaseParams.headers.set('Authorization', `Bearer ${access_token}`);
     const params = {
       ...BaseParams,
       body: JSON.stringify({
-        name: state.expenses.nameInput,
-        amount: state.expenses.amountInput,
-        category_id: 1
+        label: state.categories.nameInput
       })
     };
+    console.log(params.headers, params.body);
 
-    const res = fetch(`${URL}/expense`, params)
+    const res = fetch(`${URL}/category`, params)
       .then(res => {
         if (!res.ok) {
           throw new Error(res.status);
@@ -117,13 +123,15 @@ export const addCategoryAction = () => {
         return res.json();
       })
       .then(json => {
-        dispatch({ type: EXPENSE_ADDED });
-        dispatch({ type: CLEAR_ADD_EXPENSE_FORM });
-        history.push('/');
+        console.log(json);
+        console.log('This is my response json');
+        dispatch({ type: CATEGORY_ADDED });
+        dispatch({ type: CLEAR_ADD_CATEGORY_FORM });
+        //history.push('/');
       })
       .catch(error => {
         dispatch({
-          type: ADD_EXPENSE_ERROR,
+          type: ADD_CATEGORY_ERROR,
           payload: error
         });
       });

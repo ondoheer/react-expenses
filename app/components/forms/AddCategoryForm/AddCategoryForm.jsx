@@ -2,11 +2,17 @@ import React from 'react';
 
 const AddCategoryForm = props => (
   <div className="c-form-container u-bkg--blue">
-    <div className="c-form c-form--login">
+    <form onSubmit={props.addCategoryHandler} className="c-form c-form--login">
       <label htmlFor="name" className="c-form__label">
         Name
       </label>
-      <input id="name" className="c-form__input" type="text" />
+      <input
+        id="name"
+        className="c-form__input"
+        type="text"
+        value={props.nameInput}
+        onChange={props.setCategoryName}
+      />
 
       <button className="c-button c-button--submit c-button--dark-blue">
         add category
@@ -22,7 +28,7 @@ const AddCategoryForm = props => (
           ))}
         </ul>
       </div>
-    </div>
+    </form>
   </div>
 );
 
