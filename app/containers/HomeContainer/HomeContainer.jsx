@@ -7,9 +7,11 @@ import MonthsAccordeon from '../../components/partials/MonthsAccordeon';
 import AddExpenseButton from '../../components/partials/AddExpenseButton';
 
 import { toggleAccordeonItem } from '../../redux/modules/accordeon';
+import { logoutRemoveTokens } from '../../redux/modules/auth';
 
 const mapStateToProps = state => ({
-  months: state.accordeon.months
+  months: state.accordeon.months,
+  logoutRemoveTokens: logoutRemoveTokens
 });
 
 const mapDispatchToProps = dispatch => {
@@ -20,9 +22,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const HomeContainer = ({ toggleAccordeon, months }) => (
+const HomeContainer = ({ toggleAccordeon, months, logoutRemoveTokens }) => (
   <div className="home-container">
-    <HeaderNav />
+    <HeaderNav logoutRemoveTokens={logoutRemoveTokens} />
     <TotalExpenses month={months[0]} />
     <MonthsAccordeon toggleAccordeon={toggleAccordeon} months={months} />
     <AddExpenseButton />

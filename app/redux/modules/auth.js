@@ -12,6 +12,7 @@ export const SET_FULLNAME = 'SET_FULLNAME';
 export const SET_CONFIRM = 'SET_CONFIRM';
 export const CLEAR_AUTH_FORMS_DATA = 'CLEAR_AUTH_FORMS_DATA';
 export const REGISTER_ERROR = 'REGISTER_ERROR';
+export const LOGOUT = 'LOGOUT';
 
 /**
  * action creators
@@ -29,6 +30,7 @@ export const registerError = error => ({
 export const clearAuthFormsData = {
   type: CLEAR_AUTH_FORMS_DATA
 };
+export const logout = { type: LOGOUT };
 
 export const setEmail = value => ({
   type: SET_EMAIL,
@@ -68,6 +70,8 @@ export default (
       return state;
     case UNAUTHENTICATED:
       return state;
+    case LOGOUT:
+      return state;
     case AUTHENTICATION_ERROR:
       return { ...state, error: action.payload };
     case REGISTER_ERROR:
@@ -88,13 +92,20 @@ export default (
   }
 };
 
+// Undiscovered heroes
+export const logoutRemoveTokens = () => {
+  localStorage.removeItem('access_token');
+  localStorage.removeItem('refresh_token');
+
+  history.push('/');
+};
+
 /**
  * epics
  */
 const URL = 'http://localhost:5000';
 const BaseParams = {
   method: 'POST',
-  mode: 'cors',
   headers: new Headers({ 'Content-Type': 'application/json' })
 };
 
@@ -132,6 +143,7 @@ export const loginAction = () => {
 };
 
 export const registerAction = () => {
+  console.log('register first level');
   return (dispatch, getState) => {
     const state = getState();
 
@@ -144,16 +156,20 @@ export const registerAction = () => {
         confirm: state.auth.confirmInput
       })
     };
-
+    console.log('before fetching');
+    // debugger;
     const res = fetch(`${URL}/register`, params)
       .then(res => {
+        console.log('before checking ok');
         if (!res.ok) {
           throw new Error(res.status);
         }
+        // debugger;
         return res.json();
       })
       .then(json => {
         console.log(json);
+        console.log('this is register');
         dispatch({ type: AUTHENTICATED });
         dispatch({ type: CLEAR_AUTH_FORMS_DATA });
         localStorage.setItem('access_token', json.access_token);
@@ -163,7 +179,7 @@ export const registerAction = () => {
       .catch(error => {
         dispatch({
           type: REGISTER_ERROR,
-          payload: 'Invalid email or password'
+          payload: 'Email or password already exists'
         });
       });
   };

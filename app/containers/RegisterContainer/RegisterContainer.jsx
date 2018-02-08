@@ -33,7 +33,6 @@ const mapDispatchToProps = dispatch => {
       dispatch(setConfirm(evt.target.value));
     },
     registerHandler: evt => {
-      console.log(evt);
       evt.preventDefault;
       dispatch(registerAction());
     }
