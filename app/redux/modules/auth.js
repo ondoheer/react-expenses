@@ -60,8 +60,7 @@ export default (
     emailInput: '',
     passwordInput: '',
     fullNameInput: '',
-    confirmInput: '',
-    authenticated: false
+    confirmInput: ''
   },
   action
 ) => {
@@ -144,7 +143,6 @@ export const loginAction = () => {
 };
 
 export const registerAction = () => {
-  console.log('register first level');
   return (dispatch, getState) => {
     const state = getState();
 
@@ -157,11 +155,10 @@ export const registerAction = () => {
         confirm: state.auth.confirmInput
       })
     };
-    console.log('before fetching');
+
     // debugger;
     const res = fetch(`${URL}/register`, params)
       .then(res => {
-        console.log('before checking ok');
         if (!res.ok) {
           throw new Error(res.status);
         }
@@ -169,8 +166,6 @@ export const registerAction = () => {
         return res.json();
       })
       .then(json => {
-        console.log(json);
-        console.log('this is register');
         dispatch({ type: AUTHENTICATED });
         dispatch({ type: CLEAR_AUTH_FORMS_DATA });
         localStorage.setItem('access_token', json.access_token);
