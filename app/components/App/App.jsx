@@ -23,21 +23,50 @@ const App = props => {
       <div className="container">
         <Switch>
           <Route
+            path="/login"
+            render={() => {
+              const isLoged = localStorage.getItem('access_token');
+              return isLoged ? <Redirect to="/" /> : <LoginContainer />;
+            }}
+          />
+          <Route
+            path="/register"
+            render={() => {
+              const isLoged = localStorage.getItem('access_token');
+              return isLoged ? <Redirect to="/" /> : <RegisterContainer />;
+            }}
+          />
+
+          <Route
             exact
             path="/"
-            render={props => {
-              console.log(
-                `ìs authenticated?: ${localStorage.getItem('access_token')}`
-              );
+            render={() => {
               const isLoged = localStorage.getItem('access_token');
-              console.log(isLoged);
               return isLoged ? <HomeContainer /> : <Redirect to="/login" />;
             }}
           />
-          <Route path="/login" component={LoginContainer} />
-          <Route exact path="/register" component={RegisterContainer} />
-          <Route path="/expenseAdd" component={AddExpenseContainer} />
-          <Route path="/categoryAdd" component={AddCategoryContainer} />
+          <Route
+            path="/expenseAdd"
+            render={() => {
+              const isLoged = localStorage.getItem('access_token');
+              return isLoged ? (
+                <AddExpenseContainer />
+              ) : (
+                <Redirect to="/login" />
+              );
+            }}
+          />
+          <Route
+            path="/categoryAdd"
+            render={() => {
+              const isLoged = localStorage.getItem('access_token');
+              return isLoged ? (
+                <AddCategoryContainer />
+              ) : (
+                <Redirect to="/login" />
+              );
+            }}
+          />
           {/* <Route component={NotFound} /> */}
         </Switch>
       </div>

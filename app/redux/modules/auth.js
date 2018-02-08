@@ -96,6 +96,7 @@ export default (
 export const logoutRemoveTokens = () => {
   localStorage.removeItem('access_token');
   localStorage.removeItem('refresh_token');
+  console.log('logging out');
 
   history.push('/');
 };

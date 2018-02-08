@@ -47,11 +47,7 @@ const RegisterForm = props => (
         value={props.confirmInput}
       />
 
-      <button
-        type="button"
-        onClick={props.registerHandler}
-        className="c-button c-button--submit c-button--dark-green"
-      >
+      <button className="c-button c-button--submit c-button--dark-green">
         Register
       </button>
     </form>
