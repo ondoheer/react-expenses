@@ -5,7 +5,7 @@ import { yearMonthUserConverter } from '../../../utils/utils';
 const MonthTab = props => (
   <div
     className={`c-accordeon__month-tab c-accordeon__month-tab${
-      props.month.open ? '--minus' : '--plus'
+      props.toggleAccordeonMonth.open ? '--minus' : '--plus'
     }`}
     onClick={() => props.toggleAccordeon(props.index)}
   >

@@ -6,12 +6,15 @@ import MonthTab from './MonthTab';
 const MonthItem = props => (
   <div
     className={`c-accordeon__month-item
-    c-accordeon__month-item${props.month.open ? '--open' : '--closed'}`}
+    c-accordeon__month-item${
+      props.toggleAccordeonMonth.open ? '--open' : '--closed'
+    }`}
   >
     <MonthTab
       month={props.month}
       toggleAccordeon={props.toggleAccordeon}
       index={props.index}
+      toggleAccordeonMonth={props.toggleAccordeonMonth}
     />
     <MonthDetail categories={props.month.categories} />
   </div>

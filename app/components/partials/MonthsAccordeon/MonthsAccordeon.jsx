@@ -10,6 +10,7 @@ export default props => (
         toggleAccordeon={props.toggleAccordeon}
         index={index}
         month={month}
+        toggleAccordeonMonth={props.toggleAccordeonMonths[index]}
       />
     ))}
   </div>
