@@ -5,6 +5,8 @@ import { lifecycle, compose } from 'recompose';
 import HeaderNav from '../../components/partials/HeaderNav';
 import AddExpenseForm from '../../components/forms/AddExpenseForm';
 
+import { logoutRemoveTokens } from '../../redux/modules/auth';
+
 import {
   setExpenseName,
   setExpenseAmount,
@@ -20,7 +22,8 @@ const mapStateToProps = state => ({
   amountInput: state.expenses.amountInput,
   categoryInput: state.expenses.categoryInput,
   lasExpense: state.expenses.lastExpense,
-  categories: state.categories.categories
+  categories: state.categories.categories,
+  logoutRemoveTokens: logoutRemoveTokens
 });
 
 const mapDispatchToProps = dispatch => {
@@ -48,7 +51,7 @@ const mapDispatchToProps = dispatch => {
 };
 const AddExpenseContainer = props => (
   <div className="home-container">
-    <HeaderNav />
+    <HeaderNav logoutRemoveTokens={props.logoutRemoveTokens} />
     <AddExpenseForm
       setExpenseName={props.setExpenseName}
       setExpenseAmount={props.setExpenseAmount}

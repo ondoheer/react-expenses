@@ -27,6 +27,6 @@ npm run validate
 
 ## TODO
 
-* Index get data
-* Expense add new
 * Expenses list
+* ADD PROPS VALIDATION
+* MERGE CLEANING FORMS ACTIONS WITH SUCCESS FORM ACTIONS

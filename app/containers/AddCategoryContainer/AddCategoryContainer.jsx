@@ -5,6 +5,8 @@ import { lifecycle, compose } from 'recompose';
 import HeaderNav from '../../components/partials/HeaderNav';
 import AddCategoryForm from '../../components/forms/AddCategoryForm';
 
+import { logoutRemoveTokens } from '../../redux/modules/auth';
+
 import {
   setCategoryName,
   getCategoriesAction,
@@ -13,7 +15,8 @@ import {
 
 const mapStateToProps = state => ({
   nameInput: state.categories.nameInput,
-  categories: state.categories.categories
+  categories: state.categories.categories,
+  logoutRemoveTokens: logoutRemoveTokens
 });
 
 const mapDispatchToProps = dispatch => {
@@ -33,7 +36,7 @@ const mapDispatchToProps = dispatch => {
 
 const AddCategoryContainer = props => (
   <div className="home-container">
-    <HeaderNav />
+    <HeaderNav logoutRemoveTokens={props.logoutRemoveTokens} />
     <AddCategoryForm
       categories={props.categories}
       setCategoryName={props.setCategoryName}
