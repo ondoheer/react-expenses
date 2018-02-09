@@ -120,7 +120,7 @@ export const addExpenseAction = () => {
       body: JSON.stringify({
         name: state.expenses.nameInput,
         amount: state.expenses.amountInput,
-        category_id: 1
+        category_id: state.expenses.categoryInput
       })
     };
 

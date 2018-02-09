@@ -1,42 +1,40 @@
+.c-form {
+  &-container {
+    height: 100vh;
+  }
 
+  max-width: 320px;
+  margin: 0 auto;
+  padding-top: 60px;
 
-.c-form{
+  &--expense,
+  &--login {
+    color: white;
+  }
 
-    &-container{
+  &__label,
+  &__input {
+    width: 100%;
+    display: block;
+  }
 
-        height: 100vh;
+  &__label {
+    font-size: 1.1em;
+    line-height: 2;
+    margin-top: 30px;
+  }
 
+  &__input {
+    height: 45px;
+    font-size: 20px;
+    padding-left: 10px;
+    &--select {
+      background-color: white;
+      height: 45px;
+      text-transform: capitalize;
+      option {
+        text-transform: capitalize;
+      }
     }
-
-    max-width: 320px;
-    margin: 0 auto;
-    padding-top: 60px;
-
-    &--expense, &--login{
-        color: white;
-    }
-
-    &__label, &__input{
-        width: 100%;
-        display: block;
-
-    }
-
-    &__label{
-        font-size: 1.1em;
-        line-height: 2;
-        margin-top: 30px;
-    }
-
-    &__input{
-
-        height: 45px;
-        font-size: 20px;
-        padding-left: 10px;
-        &--select{
-
-            background-color: white;
-            height: 45px;
-        }
-    }
+  }
 }

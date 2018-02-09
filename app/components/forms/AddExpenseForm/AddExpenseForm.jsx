@@ -33,11 +33,13 @@ const AddExpenseForm = props => (
         name="category"
         id="category"
         className="c-form__input c-form__input--select"
+        onChange={props.setExpenseCategory}
       >
-        <option value="">groceries</option>
-        <option value="">transportation</option>
-        <option value="">rent</option>
-        <option value="">services</option>
+        {props.categories.map(cat => (
+          <option key={cat.id} value={cat.id}>
+            {cat.label}
+          </option>
+        ))}
       </select>
 
       <button className="c-button c-button--submit c-button--dark-red">

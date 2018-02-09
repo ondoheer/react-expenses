@@ -13,11 +13,14 @@ import {
   getLastExpense
 } from '../../redux/modules/expenses';
 
+import { getCategoriesAction } from '../../redux/modules/categories';
+
 const mapStateToProps = state => ({
   nameInput: state.expenses.nameInput,
   amountInput: state.expenses.amountInput,
   categoryInput: state.expenses.categoryInput,
-  lasExpense: state.expenses.lastExpense
+  lasExpense: state.expenses.lastExpense,
+  categories: state.categories.categories
 });
 
 const mapDispatchToProps = dispatch => {
@@ -30,6 +33,9 @@ const mapDispatchToProps = dispatch => {
     },
     setExpenseCategory: evt => {
       dispatch(setExpenseCategory(evt.target.value));
+    },
+    getCategories: () => {
+      dispatch(getCategoriesAction());
     },
     addExpenseHandler: evt => {
       evt.preventDefault();
@@ -50,6 +56,7 @@ const AddExpenseContainer = props => (
       addExpenseHandler={props.addExpenseHandler}
       getLastExpense={props.getLastExpense}
       lastExpense={props.lasExpense}
+      categories={props.categories}
     />
   </div>
 );
@@ -59,6 +66,7 @@ export default compose(
   lifecycle({
     componentWillMount() {
       this.props.getLastExpense();
+      this.props.getCategories();
     }
   })
 )(AddExpenseContainer);
