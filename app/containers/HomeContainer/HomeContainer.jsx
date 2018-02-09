@@ -30,7 +30,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 const HomeContainer = props => (
-  <div className="home-container">
+  <div className="main-container">
     <HeaderNav logoutRemoveTokens={props.logoutRemoveTokens} />
     <TotalExpenses month={props.months[0]} />
     <MonthsAccordeon

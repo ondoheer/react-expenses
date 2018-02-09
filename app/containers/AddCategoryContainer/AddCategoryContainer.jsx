@@ -35,7 +35,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 const AddCategoryContainer = props => (
-  <div className="home-container">
+  <div className="main-container">
     <HeaderNav logoutRemoveTokens={props.logoutRemoveTokens} />
     <AddCategoryForm
       categories={props.categories}

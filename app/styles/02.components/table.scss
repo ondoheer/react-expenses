@@ -1,0 +1,22 @@
+.c-table {
+  max-width: 360px;
+  margin: 0 auto;
+  margin-top: 50px;
+
+  &-row {
+    line-height: 35px;
+  }
+
+  &-head {
+    font-weight: bold;
+    text-align: left;
+  }
+
+  &-data {
+    padding-right: 45px;
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+}

@@ -30,3 +30,4 @@ npm run validate
 * Expenses list
 * ADD PROPS VALIDATION
 * MERGE CLEANING FORMS ACTIONS WITH SUCCESS FORM ACTIONS
+* BLOCK register button if password !== confirm

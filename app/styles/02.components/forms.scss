@@ -28,6 +28,10 @@
     height: 45px;
     font-size: 20px;
     padding-left: 10px;
+
+    &::placeholder {
+      font-size: 12px;
+    }
     &--select {
       background-color: white;
       height: 45px;

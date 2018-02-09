@@ -13,6 +13,7 @@ import LoginContainer from '../../containers/LoginContainer';
 import RegisterContainer from '../../containers/RegisterContainer';
 import AddExpenseContainer from '../../containers/AddExpenseContainer';
 import AddCategoryContainer from '../../containers/AddCategoryContainer';
+import ExpensesContainer from '../../containers/ExpensesContainer';
 import history from '../../index';
 
 const mapStateToProps = state => ({});
@@ -46,7 +47,7 @@ const App = props => {
             }}
           />
           <Route
-            path="/expenseAdd"
+            path="/expense/create"
             render={() => {
               const isLoged = localStorage.getItem('access_token');
               return isLoged ? (
@@ -57,7 +58,15 @@ const App = props => {
             }}
           />
           <Route
-            path="/categoryAdd"
+            exact
+            path="/expense"
+            render={() => {
+              const isLoged = localStorage.getItem('access_token');
+              return isLoged ? <ExpensesContainer /> : <Redirect to="/login" />;
+            }}
+          />
+          <Route
+            path="/category/create"
             render={() => {
               const isLoged = localStorage.getItem('access_token');
               return isLoged ? (

@@ -11,6 +11,9 @@ export const EXPENSE_ADDED = 'EXPENSE_ADDED';
 export const CLEAR_ADD_EXPENSE_FORM = 'CLEAR_ADD_EXPENSE_FORM';
 export const ADD_EXPENSE_ERROR = 'ADD_EXPENSE_ERROR';
 export const GET_LAST_EXPENSE = 'GET_LAST_EXPENSE';
+export const GET_FILTERED_EXPENSES = 'GET_FILTERED_EXPENSES';
+export const SET_SEARCH_INPUT = 'SET_SEARCH_INPUT';
+export const SELECT_PAGE = 'SELECT_PAGE';
 
 /**
  * action creators
@@ -36,6 +39,16 @@ export const setExpenseCategory = value => ({
   value
 });
 
+export const filterExpenses = value => ({
+  type: GET_FILTERED_EXPENSES,
+  value
+});
+
+export const setSearchInput = value => ({
+  type: SET_SEARCH_INPUT,
+  value
+});
+
 /**
  * reducer
  */
@@ -45,7 +58,11 @@ export default (
     nameInput: '',
     amountInput: '',
     categoryInput: '',
-    lastExpense: ''
+    lastExpense: '',
+    searchInput: '',
+    perPage: '10',
+    page: '1',
+    expenses: []
   },
   action
 ) => {
@@ -58,6 +75,8 @@ export default (
       return { ...state, categoryInput: action.value };
     case GET_LAST_EXPENSE:
       return { ...state, lastExpense: action.data };
+    case GET_FILTERED_EXPENSES:
+      return { ...state, expenses: action.data };
     default:
       return state;
   }
@@ -72,13 +91,18 @@ const BaseParams = {
   headers: new Headers({ 'Content-Type': 'application/json' })
 };
 
+export const changePage = () => {};
+
+/**
+ * GETS THET LAST EXPENSE
+ */
 export const getLastExpense = () => {
   return (dispatch, getState) => {
     const state = getState();
     const access_token = localStorage.getItem('access_token');
 
     if (!access_token) {
-      throw new Error('Un authorized request');
+      console.error('Un authorized request');
       history.push('/login');
     }
     BaseParams.headers.set('Authorization', `Bearer ${access_token}`);
@@ -91,7 +115,7 @@ export const getLastExpense = () => {
     const res = fetch(`${URL}/expense${QUERY_ARGS}`, params)
       .then(res => {
         if (!res.ok) {
-          throw new Error(res.status);
+          console.error(res.status);
         }
         return res.json();
       })
@@ -99,11 +123,47 @@ export const getLastExpense = () => {
         dispatch({ type: GET_LAST_EXPENSE, data: json });
       })
       .catch(error => {
-        throw new Error(error);
+        console.error(error);
       });
   };
 };
 
+/**
+ * GETS THE EXPENSES USING QUERY PARAMETERS
+ */
+export const getExpensesWithParams = () => {
+  return (dispatch, getState) => {
+    const state = getState();
+    const access_token = localStorage.getItem('access_token');
+
+    if (!access_token) {
+      console.error('Un authorized request');
+      history.push('/login');
+    }
+    const params = { ...BaseParams, method: 'GET' };
+    const QUERY_ARGS = `?page=${state.page}&per_page=${state.perPage}&search=${
+      state.searchInput
+    }`;
+
+    const res = fetch(`${URL}/expense${QUERY_ARGS}`, params)
+      .then(res => {
+        if (!res.ok) {
+          console.error(res.status);
+        }
+        return res.json();
+      })
+      .then(json => {
+        dispatch({ type: GET_FILTERED_EXPENSES, data: json });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+};
+
+/**
+ * ADDS A NEW EXPENSE
+ */
 export const addExpenseAction = () => {
   return (dispatch, getState) => {
     const state = getState();
@@ -111,7 +171,7 @@ export const addExpenseAction = () => {
     const access_token = localStorage.getItem('access_token');
 
     if (!access_token) {
-      throw new Error('Un authorized request');
+      console.error('Un authorized request');
       history.push('/login');
     }
     BaseParams.headers.set('Authorization', `Bearer ${access_token}`);
@@ -127,7 +187,7 @@ export const addExpenseAction = () => {
     const res = fetch(`${URL}/expense`, params)
       .then(res => {
         if (!res.ok) {
-          throw new Error(res.status);
+          console.error(res.status);
         }
         return res.json();
       })

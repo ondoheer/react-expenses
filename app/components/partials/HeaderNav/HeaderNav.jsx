@@ -11,10 +11,10 @@ export default props => (
         </NavLink>
       </li>
       <li className="c-top-nav__item" to="/expenses">
-        <NavLink to="/expenses">Expenses</NavLink>
+        <NavLink to="/expense">Expenses</NavLink>
       </li>
       <li className="c-top-nav__item">
-        <NavLink to="/categoryAdd">Categories</NavLink>
+        <NavLink to="/category/create">Categories</NavLink>
       </li>
       <li className="c-top-nav__item c-c-top-nav__item ">
         <button

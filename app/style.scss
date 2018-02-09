@@ -1,13 +1,14 @@
 @import 'styles/00.resets/reset';
 
-@import 'styles/01.settings/variables',
-        'styles/01.settings/queries';
+@import 'styles/01.settings/variables', 'styles/01.settings/queries';
 @import 'styles/02.components/buttons',
-        'styles/02.components/top-nav',
-        'styles/02.components/accordeon',
-         'styles/02.components/total-expenses',
-        'styles/02.components/forms',
-        'styles/02.components/info-box';
+  'styles/02.components/top-nav',
+  'styles/02.components/accordeon',
+  'styles/02.components/total-expenses',
+  'styles/02.components/forms',
+  'styles/02.components/info-box',
+  'styles/02.components/pagination',
+  'styles/02.components/table';
 
 @import 'styles/04.utilities/backgrounds';
 
