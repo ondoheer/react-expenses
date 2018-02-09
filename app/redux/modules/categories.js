@@ -22,7 +22,7 @@ export const categoryAdded = data => ({
 });
 export const addCategoryError = error => ({
   type: ADD_CATEGORY_ERROR,
-  payload: error
+  error
 });
 export const setCategoryName = value => ({
   type: ADD_CATEGORY_NAME,
@@ -103,8 +103,8 @@ export const addCategoryAction = () => {
     const access_token = localStorage.getItem('access_token');
 
     if (!access_token) {
-      throw new Error('Un authorized request');
       history.push('/login');
+      //throw new Error('Un authorized request');
     }
     BaseParams.headers.set('Authorization', `Bearer ${access_token}`);
     const params = {
@@ -113,7 +113,6 @@ export const addCategoryAction = () => {
         label: state.categories.nameInput
       })
     };
-    console.log(params.headers, params.body);
 
     const res = fetch(`${URL}/category`, params)
       .then(res => {
@@ -123,16 +122,15 @@ export const addCategoryAction = () => {
         return res.json();
       })
       .then(json => {
-        console.log(json);
-        console.log('This is my response json');
-        dispatch({ type: CATEGORY_ADDED });
+        dispatch({ type: CATEGORY_ADDED, category: json });
         dispatch({ type: CLEAR_ADD_CATEGORY_FORM });
         //history.push('/');
       })
       .catch(error => {
+        console.error(error);
         dispatch({
           type: ADD_CATEGORY_ERROR,
-          payload: error
+          error
         });
       });
   };

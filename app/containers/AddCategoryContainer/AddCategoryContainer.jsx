@@ -25,7 +25,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(getCategoriesAction());
     },
     addCategoryHandler: evt => {
-      evt.preventDefault;
+      evt.preventDefault();
       dispatch(addCategoryAction());
     }
   };

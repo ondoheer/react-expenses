@@ -44,22 +44,3 @@ export default (
 /**
  * epics
  */
-// export const getFooEpic = () => dispatch => {
-//   console.log(dispatch);
-
-//   fetch('me.com')
-//     .then(res => {
-//       if (res.ok) {
-//         return res.json();
-//       }
-
-//       throw new Error(res.statusCode);
-//     })
-//     .then(result => {
-//       dispatch(getFooSuccess(result));
-//     })
-//     .catch(err => {
-//       console.error('ERROR', err);
-//       dispatch(getFooError(err));
-//     });
-// };

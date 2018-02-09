@@ -44,7 +44,8 @@ export default (
   state = {
     nameInput: '',
     amountInput: '',
-    categoryInput: ''
+    categoryInput: '',
+    lastExpense: ''
   },
   action
 ) => {
@@ -55,6 +56,8 @@ export default (
       return { ...state, nameInput: action.value };
     case SELECT_EXPENSE_CATEGORY:
       return { ...state, categoryInput: action.value };
+    case GET_LAST_EXPENSE:
+      return { ...state, lastExpense: action.data };
     default:
       return state;
   }
@@ -67,6 +70,38 @@ const URL = 'http://localhost:5000';
 const BaseParams = {
   method: 'POST',
   headers: new Headers({ 'Content-Type': 'application/json' })
+};
+
+export const getLastExpense = () => {
+  return (dispatch, getState) => {
+    const state = getState();
+    const access_token = localStorage.getItem('access_token');
+
+    if (!access_token) {
+      throw new Error('Un authorized request');
+      history.push('/login');
+    }
+    BaseParams.headers.set('Authorization', `Bearer ${access_token}`);
+    const params = {
+      ...BaseParams,
+      method: 'GET'
+    };
+    const QUERY_ARGS = '?last=true';
+
+    const res = fetch(`${URL}/expense${QUERY_ARGS}`, params)
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then(json => {
+        dispatch({ type: GET_LAST_EXPENSE, data: json });
+      })
+      .catch(error => {
+        throw new Error(error);
+      });
+  };
 };
 
 export const addExpenseAction = () => {

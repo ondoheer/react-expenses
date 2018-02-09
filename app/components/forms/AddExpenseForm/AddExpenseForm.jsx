@@ -45,8 +45,8 @@ const AddExpenseForm = props => (
       </button>
 
       <div className="c-info-box c-info-box--white">
-        <strong>last expense </strong> <br /> eating a nice bembos burger S/
-        34.56
+        <strong>last expense </strong> <br /> {props.lastExpense.name} S/
+        {props.lastExpense.amount}
       </div>
     </form>
   </div>

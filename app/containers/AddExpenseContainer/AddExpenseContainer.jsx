@@ -9,13 +9,15 @@ import {
   setExpenseName,
   setExpenseAmount,
   setExpenseCategory,
-  addExpenseAction
+  addExpenseAction,
+  getLastExpense
 } from '../../redux/modules/expenses';
 
 const mapStateToProps = state => ({
   nameInput: state.expenses.nameInput,
   amountInput: state.expenses.amountInput,
-  categoryInput: state.expenses.categoryInput
+  categoryInput: state.expenses.categoryInput,
+  lasExpense: state.expenses.lastExpense
 });
 
 const mapDispatchToProps = dispatch => {
@@ -30,8 +32,11 @@ const mapDispatchToProps = dispatch => {
       dispatch(setExpenseCategory(evt.target.value));
     },
     addExpenseHandler: evt => {
-      evt.preventDefault;
+      evt.preventDefault();
       dispatch(addExpenseAction());
+    },
+    getLastExpense: () => {
+      dispatch(getLastExpense());
     }
   };
 };
@@ -43,6 +48,8 @@ const AddExpenseContainer = props => (
       setExpenseAmount={props.setExpenseAmount}
       setExpenseCategory={props.setExpenseCategory}
       addExpenseHandler={props.addExpenseHandler}
+      getLastExpense={props.getLastExpense}
+      lastExpense={props.lasExpense}
     />
   </div>
 );
@@ -51,7 +58,7 @@ export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   lifecycle({
     componentWillMount() {
-      this.props.fetchData();
+      this.props.getLastExpense();
     }
   })
 )(AddExpenseContainer);
