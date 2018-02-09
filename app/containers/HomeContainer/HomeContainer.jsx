@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { lifecycle, compose } from 'recompose';
 
 import HeaderNav from '../../components/partials/HeaderNav';
 import TotalExpenses from '../../components/partials/TotalExpenses';
@@ -9,8 +10,11 @@ import AddExpenseButton from '../../components/partials/AddExpenseButton';
 import { toggleAccordeonItem } from '../../redux/modules/accordeon';
 import { logoutRemoveTokens } from '../../redux/modules/auth';
 
+import { homeDataAction } from '../../redux/modules/homepage';
+
 const mapStateToProps = state => ({
-  months: state.accordeon.months,
+  toggleAccordeonMonths: state.accordeon.months,
+  months: state.homepage.months,
   logoutRemoveTokens: logoutRemoveTokens
 });
 
@@ -18,17 +22,32 @@ const mapDispatchToProps = dispatch => {
   return {
     toggleAccordeon: index => {
       dispatch(toggleAccordeonItem(index));
+    },
+    getHomeData: () => {
+      dispatch(homeDataAction());
     }
   };
 };
 
-const HomeContainer = ({ toggleAccordeon, months, logoutRemoveTokens }) => (
+const HomeContainer = props => (
   <div className="home-container">
-    <HeaderNav logoutRemoveTokens={logoutRemoveTokens} />
-    <TotalExpenses month={months[0]} />
-    <MonthsAccordeon toggleAccordeon={toggleAccordeon} months={months} />
+    <HeaderNav logoutRemoveTokens={props.logoutRemoveTokens} />
+    <TotalExpenses month={props.months[0]} />
+    <MonthsAccordeon
+      toggleAccordeon={props.toggleAccordeon}
+      months={props.months}
+      toggleAccordeonMonths={props.toggleAccordeonMonths}
+    />
     <AddExpenseButton />
   </div>
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  lifecycle({
+    componentWillMount() {
+      this.props.getHomeData();
+      console.log(this.props.months);
+    }
+  })
+)(HomeContainer);

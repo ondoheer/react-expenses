@@ -18,53 +18,6 @@ export default (
   state = {
     months: [
       {
-        id: '2018-2-4',
-        categories: [
-          {
-            id: '3',
-            amount: 23.5,
-            label: 'Taxi',
-            name: 'taxi'
-          },
-          {
-            id: '2',
-            amount: 305.5,
-            label: 'Clothing',
-            name: 'clothing'
-          },
-          {
-            id: '1',
-            amount: 305.5,
-            label: 'Groceries',
-            name: 'groceries'
-          }
-        ],
-        total: 634.5,
-        open: false
-      },
-      {
-        id: '2018-1-4',
-        categories: [
-          {
-            id: '3',
-            amount: 23.5,
-            label: 'Taxi',
-            name: 'taxi'
-          },
-          {
-            id: '2',
-            amount: 305.5,
-            label: 'Clothing',
-            name: 'clothing'
-          },
-          {
-            id: '1',
-            amount: 305.5,
-            label: 'Groceries',
-            name: 'groceries'
-          }
-        ],
-        total: 8646.5,
         open: false
       }
     ]

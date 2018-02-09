@@ -79,7 +79,7 @@ export const addExpenseAction = () => {
       throw new Error('Un authorized request');
       history.push('/login');
     }
-    BaseParams.headers.append('Authorization', `Bearer ${access_token}`);
+    BaseParams.headers.set('Authorization', `Bearer ${access_token}`);
     const params = {
       ...BaseParams,
       body: JSON.stringify({

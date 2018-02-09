@@ -25,13 +25,8 @@ npm run dev
 npm run validate
 ```
 
-## Actions
+## TODO
 
-* create expense
-* create category
-* Get expenses?
-* Get home data?
-* Login
-* Register
-* Refresh token
-* Update token?
+* Index get data
+* Expense add new
+* Expenses list
