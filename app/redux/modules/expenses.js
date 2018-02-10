@@ -13,7 +13,9 @@ export const ADD_EXPENSE_ERROR = 'ADD_EXPENSE_ERROR';
 export const GET_LAST_EXPENSE = 'GET_LAST_EXPENSE';
 export const GET_FILTERED_EXPENSES = 'GET_FILTERED_EXPENSES';
 export const SET_SEARCH_INPUT = 'SET_SEARCH_INPUT';
-export const SELECT_PAGE = 'SELECT_PAGE';
+export const SET_PAGE_INPUT = 'SET_PAGE_INPUT';
+export const INCREASE_PAGE = 'INCREASE_PAGE';
+export const DECREASE_PAGE = 'DECREASE_PAGE';
 
 /**
  * action creators
@@ -49,6 +51,18 @@ export const setSearchInput = value => ({
   value
 });
 
+export const setPageInput = value => ({
+  type: SET_PAGE_INPUT,
+  value
+});
+
+export const increasePage = {
+  type: INCREASE_PAGE
+};
+export const decreasePage = {
+  type: DECREASE_PAGE
+};
+
 /**
  * reducer
  */
@@ -60,9 +74,16 @@ export default (
     categoryInput: '',
     lastExpense: '',
     searchInput: '',
-    perPage: '10',
-    page: '1',
-    expenses: []
+    perPage: 10,
+    page: 1,
+    expenses: {
+      has_prev: false,
+      has_next: false,
+      next_num: null,
+      prev_num: null,
+      pages: 1,
+      expenses: []
+    }
   },
   action
 ) => {
@@ -77,6 +98,14 @@ export default (
       return { ...state, lastExpense: action.data };
     case GET_FILTERED_EXPENSES:
       return { ...state, expenses: action.data };
+    case SET_SEARCH_INPUT:
+      return { ...state, searchInput: action.value };
+    case SET_PAGE_INPUT:
+      return { ...state, page: action.value };
+    case INCREASE_PAGE:
+      return { ...state, page: state.page + 1 };
+    case DECREASE_PAGE:
+      return { ...state, page: state.page - 1 };
     default:
       return state;
   }
@@ -90,8 +119,6 @@ const BaseParams = {
   method: 'POST',
   headers: new Headers({ 'Content-Type': 'application/json' })
 };
-
-export const changePage = () => {};
 
 /**
  * GETS THET LAST EXPENSE
@@ -131,20 +158,21 @@ export const getLastExpense = () => {
 /**
  * GETS THE EXPENSES USING QUERY PARAMETERS
  */
-export const getExpensesWithParams = () => {
+export const getFilteredExpenses = () => {
   return (dispatch, getState) => {
     const state = getState();
     const access_token = localStorage.getItem('access_token');
 
     if (!access_token) {
-      console.error('Un authorized request');
       history.push('/login');
     }
-    const params = { ...BaseParams, method: 'GET' };
-    const QUERY_ARGS = `?page=${state.page}&per_page=${state.perPage}&search=${
-      state.searchInput
-    }`;
 
+    BaseParams.headers.set('Authorization', `Bearer ${access_token}`);
+    const params = { ...BaseParams, method: 'GET' };
+    const QUERY_ARGS = `?page=${state.expenses.page}&per_page=${
+      state.expenses.perPage
+    }&search=${state.expenses.searchInput}`;
+    // debugger;
     const res = fetch(`${URL}/expense${QUERY_ARGS}`, params)
       .then(res => {
         if (!res.ok) {
@@ -158,6 +186,28 @@ export const getExpensesWithParams = () => {
       .catch(error => {
         console.error(error);
       });
+  };
+};
+
+/**
+ * GET NEXT PAGE
+ */
+export const getNextPage = () => {
+  // DOES THIS NEED THUNK???
+
+  return dispatch => {
+    dispatch(increasePage);
+    dispatch(getFilteredExpenses());
+  };
+};
+
+/**
+ * GET PREVIOUS PAGE
+ */
+export const getPreviousPage = () => {
+  return dispatch => {
+    dispatch(decreasePage);
+    dispatch(getFilteredExpenses());
   };
 };
 

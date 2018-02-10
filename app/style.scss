@@ -1,7 +1,8 @@
 @import 'styles/00.resets/reset';
 
 @import 'styles/01.settings/variables', 'styles/01.settings/queries';
-@import 'styles/02.components/buttons',
+@import 'styles/02.components/containers',
+  'styles/02.components/buttons',
   'styles/02.components/top-nav',
   'styles/02.components/accordeon',
   'styles/02.components/total-expenses',

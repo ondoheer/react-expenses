@@ -1,33 +1,21 @@
+.c-total-expenses {
+  // justify-content: flex-start;
 
+  padding: 90px 40px 40px;
+  text-align: center;
+  line-height: 1.5;
 
-
-
-
-
-.c-total-expenses{
-
-    // justify-content: flex-start;
-
-    padding: 40px 40px;
+  &__title {
     text-align: center;
-    line-height: 1.5;
-
-    &__title{
-        text-align: center;
-    }
-    &__item{
-        font-size: 25px;
-
-    }
-    &__amount{
-
-        text-align: center;
-    }
-    &__current-month{
-        font-size: 18px;
-        color: grey;
-    }
+  }
+  &__item {
+    font-size: 25px;
+  }
+  &__amount {
+    text-align: center;
+  }
+  &__current-month {
+    font-size: 18px;
+    color: grey;
+  }
 }
-
-
-
