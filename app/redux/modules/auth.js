@@ -91,7 +91,9 @@ export default (
   }
 };
 
-// Undiscovered heroes
+/**
+ *  Undiscovered heroes
+ */
 export const logoutRemoveTokens = () => {
   localStorage.removeItem('access_token');
   localStorage.removeItem('refresh_token');
@@ -102,6 +104,7 @@ export const logoutRemoveTokens = () => {
 /**
  * epics
  */
+
 const URL = 'http://localhost:5000';
 const BaseParams = {
   method: 'POST',

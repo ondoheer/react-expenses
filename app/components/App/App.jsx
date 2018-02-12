@@ -14,6 +14,7 @@ import RegisterContainer from '../../containers/RegisterContainer';
 import AddExpenseContainer from '../../containers/AddExpenseContainer';
 import AddCategoryContainer from '../../containers/AddCategoryContainer';
 import ExpensesContainer from '../../containers/ExpensesContainer';
+
 import history from '../../index';
 
 const mapStateToProps = state => ({});

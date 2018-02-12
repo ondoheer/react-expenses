@@ -47,7 +47,6 @@ export default compose(
   lifecycle({
     componentWillMount() {
       this.props.getHomeData();
-      console.log(this.props.months);
     }
   })
 )(HomeContainer);

@@ -45,7 +45,7 @@ export const homeDataAction = () => {
     const access_token = localStorage.getItem('access_token');
 
     if (!access_token) {
-      throw new Error('Un authorized request');
+      console.error('Un authorized request');
       history.push('/login');
     }
     BaseParams.headers.set('Authorization', `Bearer ${access_token}`);
@@ -53,8 +53,8 @@ export const homeDataAction = () => {
 
     const res = fetch(`${URL}/main`, params)
       .then(res => {
-        if (!res.ok) {
-          throw new Error(res.status);
+        if (!res.ok && res.status === 401) {
+          console.log('trying to refresh token');
         }
         return res.json();
       })
@@ -62,7 +62,7 @@ export const homeDataAction = () => {
         dispatch({ type: GET_MAIN_DATA, data: json });
       })
       .catch(error => {
-        throw new Error(error.status);
+        console.error(error.status);
       });
   };
 };

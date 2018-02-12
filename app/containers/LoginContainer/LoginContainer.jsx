@@ -27,7 +27,7 @@ const mapDispatchToProps = dispatch => {
 
 const LoginContainer = props => {
   return (
-    <div className="login-container">
+    <div className="login-container u-bkg--green">
       <LoginForm
         loginHandler={props.loginHandler}
         setEmail={props.setEmail}

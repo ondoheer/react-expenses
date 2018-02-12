@@ -39,7 +39,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 const RegisterContainer = props => (
-  <div className="home-container">
+  <div className="register-container u-bkg--green">
     <RegisterForm
       setEmail={props.setEmail}
       setPassword={props.setPassword}
