@@ -111,6 +111,19 @@ const BaseParams = {
   headers: new Headers({ 'Content-Type': 'application/json' })
 };
 
+/**
+ * So far the only way I have found is to push when you go somewhere else and
+ * to just return when you can continue. I need to try it with return false
+ * after I have solved the callback hell
+ */
+const AuthMiddleware = () => {
+  let access_token = localStorage.getItem('access_token');
+  if (!access_token) {
+    history.push('/login');
+  } else {
+  }
+};
+
 export const loginAction = () => {
   return (dispatch, getState) => {
     const state = getState();

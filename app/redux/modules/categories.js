@@ -61,7 +61,8 @@ export default (
 const URL = 'http://localhost:5000';
 const BaseParams = {
   method: 'POST',
-  headers: new Headers({ 'Content-Type': 'application/json' })
+  headers: new Headers({ 'Content-Type': 'application/json' }),
+  mode: 'cors'
 };
 
 export const getCategoriesAction = () => {

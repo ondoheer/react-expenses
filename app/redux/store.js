@@ -1,23 +1,12 @@
 /* global window */
 /* eslint-disable no-underscore-dangle */
-import {
-  createStore,
-  applyMiddleware,
-  compose,
-}                             from 'redux';
-import thunk                  from 'redux-thunk';
-import reducer                from './reducer';
-
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import reducer from './reducer';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-
-export default createStore(
-  reducer,
-  composeEnhancers(
-    applyMiddleware(thunk)
-  )
-);
+export default createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
 // const defaultMiddleware = (action, next) => {
 //   next(action);
@@ -30,7 +19,6 @@ export default createStore(
 //     })
 //   })
 // }
-
 
 // const scrollHandler = {};
 // const throttle = (fn, time) => {
@@ -45,5 +33,3 @@ export default createStore(
 //   }
 // }
 // const throttledScrollhandler = throttle(scrollHandler, 1000);
-
-

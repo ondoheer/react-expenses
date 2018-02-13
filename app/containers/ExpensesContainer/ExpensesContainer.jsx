@@ -14,10 +14,9 @@ import { logoutRemoveTokens } from '../../redux/modules/auth';
 import {
   getFilteredExpenses,
   setSearchInput,
-  setPageInput,
+  setPage,
   getNextPage,
-  getPreviousPage,
-  increasePage
+  getPreviousPage
 } from '../../redux/modules/expenses';
 
 const mapStateToProps = state => ({
@@ -28,8 +27,7 @@ const mapStateToProps = state => ({
   expenses: state.expenses.expenses.expenses,
   searchInput: state.expenses.searchInput,
   has_next: state.expenses.expenses.has_next,
-  has_prev: state.expenses.expenses.has_prev,
-  increasePage
+  has_prev: state.expenses.expenses.has_prev
 });
 
 const mapDispatchToProps = dispatch => {
@@ -44,13 +42,16 @@ const mapDispatchToProps = dispatch => {
       dispatch(setSearchInput(evt.target.value));
     },
     setPageInput: evt => {
-      dispatch(setPageInput(evt.target.value));
+      dispatch(setPaget(evt.target.value));
     },
     getNextPage: () => {
       dispatch(getNextPage());
     },
     getPreviousPage: () => {
       dispatch(getPreviousPage());
+    },
+    resetSetPage: () => {
+      dispatch(setPage(1));
     }
   };
 };
@@ -84,6 +85,9 @@ export default compose(
   lifecycle({
     componentWillMount() {
       this.props.getExpenses();
+    },
+    componentWillUnmount() {
+      this.props.resetSetPage(1);
     }
   })
 )(ExpensesContainer);

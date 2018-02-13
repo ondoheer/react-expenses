@@ -27,9 +27,32 @@ npm run validate
 
 ## TODO
 
-* Expenses list
 * ADD PROPS VALIDATION
 * MERGE CLEANING FORMS ACTIONS WITH SUCCESS FORM ACTIONS
 * BLOCK register button if password !== confirm
 * Clear page form after view is destroyed
-* bug de total de categorías no devuelve lo que debe
+
+## Token logic
+
+No token validation or logout shoud happen outside of this function (except for the logout route)
+
+I have two diferent things that need authentication
+
+1. Routes that should not be accessed while authenticated
+2. Enpoints that should not be requested if not authenticated, i.e if you are logged in and your token expires, requesting to a protected endpoint (for example a create data form)
+   you should be loged out. So, any 401 responses should trigger that.
+
+```
+check if user has an auth token
+    if has auth token validate it
+        if validate
+            continue to site
+
+        if auth token expired
+            try to refresh token
+                if refreshes, go to original location
+                if NOT logout user and go to login
+
+    if not have auth token
+        go to login
+```

@@ -1,12 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  BrowserRouter,
-  Router,
-  Route,
-  Switch,
-  Redirect
-} from 'react-router-dom';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import HomeContainer from '../../containers/HomeContainer';
 import LoginContainer from '../../containers/LoginContainer';
@@ -14,6 +8,7 @@ import RegisterContainer from '../../containers/RegisterContainer';
 import AddExpenseContainer from '../../containers/AddExpenseContainer';
 import AddCategoryContainer from '../../containers/AddCategoryContainer';
 import ExpensesContainer from '../../containers/ExpensesContainer';
+import NotFoundContainer from '../../containers/NotFoundContainer';
 
 import history from '../../index';
 
@@ -25,6 +20,7 @@ const App = props => {
       <div className="container">
         <Switch>
           <Route
+            exact
             path="/login"
             render={() => {
               const isLoged = localStorage.getItem('access_token');
@@ -32,6 +28,7 @@ const App = props => {
             }}
           />
           <Route
+            exact
             path="/register"
             render={() => {
               const isLoged = localStorage.getItem('access_token');
@@ -48,6 +45,7 @@ const App = props => {
             }}
           />
           <Route
+            exact
             path="/expense/create"
             render={() => {
               const isLoged = localStorage.getItem('access_token');
@@ -67,6 +65,7 @@ const App = props => {
             }}
           />
           <Route
+            exact
             path="/category/create"
             render={() => {
               const isLoged = localStorage.getItem('access_token');
@@ -77,7 +76,7 @@ const App = props => {
               );
             }}
           />
-          {/* <Route component={NotFound} /> */}
+          <Route component={NotFoundContainer} />
         </Switch>
       </div>
     </Router>

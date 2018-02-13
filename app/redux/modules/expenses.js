@@ -13,7 +13,7 @@ export const ADD_EXPENSE_ERROR = 'ADD_EXPENSE_ERROR';
 export const GET_LAST_EXPENSE = 'GET_LAST_EXPENSE';
 export const GET_FILTERED_EXPENSES = 'GET_FILTERED_EXPENSES';
 export const SET_SEARCH_INPUT = 'SET_SEARCH_INPUT';
-export const SET_PAGE_INPUT = 'SET_PAGE_INPUT';
+export const SET_PAGE = 'SET_PAGE';
 export const INCREASE_PAGE = 'INCREASE_PAGE';
 export const DECREASE_PAGE = 'DECREASE_PAGE';
 
@@ -51,8 +51,8 @@ export const setSearchInput = value => ({
   value
 });
 
-export const setPageInput = value => ({
-  type: SET_PAGE_INPUT,
+export const setPage = value => ({
+  type: SET_PAGE,
   value
 });
 
@@ -100,7 +100,7 @@ export default (
       return { ...state, expenses: action.data };
     case SET_SEARCH_INPUT:
       return { ...state, searchInput: action.value };
-    case SET_PAGE_INPUT:
+    case SET_PAGE:
       return { ...state, page: action.value };
     case INCREASE_PAGE:
       return { ...state, page: state.page + 1 };
@@ -193,8 +193,6 @@ export const getFilteredExpenses = () => {
  * GET NEXT PAGE
  */
 export const getNextPage = () => {
-  // DOES THIS NEED THUNK???
-
   return dispatch => {
     dispatch(increasePage);
     dispatch(getFilteredExpenses());
