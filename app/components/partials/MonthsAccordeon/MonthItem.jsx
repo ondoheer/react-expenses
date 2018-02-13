@@ -5,10 +5,10 @@ import MonthTab from './MonthTab';
 
 const MonthItem = props => (
   <div
-    className={`c-accordeon__month-item
+    className={` c-accordeon__month-item
     c-accordeon__month-item${
       props.toggleAccordeonMonth.open ? '--open' : '--closed'
-    }`}
+    } ${props.first}`}
   >
     <MonthTab
       month={props.month}

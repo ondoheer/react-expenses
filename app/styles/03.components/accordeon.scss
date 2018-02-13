@@ -1,9 +1,11 @@
 .c-accordeon {
   max-width: 320px;
   margin: 0 auto;
-  border: 1px solid grey;
-  padding: 0 5px;
+  //border: 1px solid #dbd4d3;
+  border-bottom: 1px solid #dbd4d3;
+
   border-radius: 2px;
+  color: #989aa5;
 
   &__month,
   &__detail {
@@ -16,6 +18,7 @@
       padding-top: 15px;
       padding-bottom: 15px;
       line-height: 1.3;
+      color: #989aa5;
     }
 
     &--closed {
@@ -27,7 +30,7 @@
 
   &__month-tab {
     font-size: 1.3em;
-    border-bottom: 1px solid grey;
+    //border-bottom: 1px solid grey;
     padding: 5px 10px;
     line-height: 1.5;
 
@@ -45,4 +48,18 @@
       float: right;
     }
   }
+}
+
+.first {
+  // background-color: #b9d6f2;
+  font-weight: 500;
+  // border-color: #b9d5f2;
+  color: $main-dark;
+  .c-accordeon__month-item {
+    color: black;
+  }
+}
+
+.c-accordeon:first-child {
+  border-color: $secondary;
 }

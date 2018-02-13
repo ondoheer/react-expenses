@@ -34,6 +34,22 @@ const HomeContainer = props => (
     <HeaderNav logoutRemoveTokens={props.logoutRemoveTokens} />
     <TotalExpenses month={props.months[0]} />
     <MonthsAccordeon
+      first="first"
+      toggleAccordeon={props.toggleAccordeon}
+      months={props.months}
+      toggleAccordeonMonths={props.toggleAccordeonMonths}
+    />
+    <MonthsAccordeon
+      toggleAccordeon={props.toggleAccordeon}
+      months={props.months}
+      toggleAccordeonMonths={props.toggleAccordeonMonths}
+    />
+    <MonthsAccordeon
+      toggleAccordeon={props.toggleAccordeon}
+      months={props.months}
+      toggleAccordeonMonths={props.toggleAccordeonMonths}
+    />
+    <MonthsAccordeon
       toggleAccordeon={props.toggleAccordeon}
       months={props.months}
       toggleAccordeonMonths={props.toggleAccordeonMonths}

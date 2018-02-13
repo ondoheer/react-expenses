@@ -3,7 +3,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 export default props => (
-  <nav className="c-top-nav">
+  <nav className="c-top-nav u-bkg--main-color">
     <ul className="c-top-nav__list">
       <li className="c-top-nav__item">
         <NavLink exact to="/">

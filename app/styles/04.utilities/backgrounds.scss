@@ -1,4 +1,8 @@
 .u-bkg {
+  &--main-color {
+    background-color: $main;
+    color: white;
+  }
   &--red {
     background-color: $red;
   }

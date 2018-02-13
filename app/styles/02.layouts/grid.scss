@@ -1,0 +1,9 @@
+.l-grid-212 {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  grid-column-gap: 5px;
+  grid-row-gap: 0.75rem;
+  padding: 0 1rem;
+  margin: 2rem 0;
+  text-align: center;
+}

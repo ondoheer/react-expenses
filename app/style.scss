@@ -1,18 +1,22 @@
 @import 'styles/00.resets/reset';
 
-@import 'styles/01.settings/variables', 'styles/01.settings/queries';
-@import 'styles/02.components/containers',
-  'styles/02.components/buttons',
-  'styles/02.components/top-nav',
-  'styles/02.components/accordeon',
-  'styles/02.components/total-expenses',
-  'styles/02.components/forms',
-  'styles/02.components/info-box',
-  'styles/02.components/pagination',
-  'styles/02.components/table';
+@import 'styles/01.settings/variables',
+  'styles/01.settings/queries',
+  'styles/01.settings/fonts',
+  'styles/01.settings/base';
+@import 'styles/02.layouts/grid';
+@import 'styles/03.components/containers',
+  'styles/03.components/buttons',
+  'styles/03.components/top-nav',
+  'styles/03.components/accordeon',
+  'styles/03.components/total-expenses',
+  'styles/03.components/forms',
+  'styles/03.components/info-box',
+  'styles/03.components/pagination',
+  'styles/03.components/table';
 
-@import 'styles/04.utilities/backgrounds';
+@import 'styles/04.utilities/backgrounds', 'styles/04.utilities/titles';
 
 body {
-  font-family: sans-serif;
+  font-family: $main-text;
 }

@@ -6,6 +6,7 @@ export default props => (
   <div className="c-accordeon">
     {props.months.map((month, index) => (
       <MonthItem
+        first={props.first}
         key={index}
         toggleAccordeon={props.toggleAccordeon}
         index={index}

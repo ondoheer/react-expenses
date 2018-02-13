@@ -1,7 +1,8 @@
 .c-top-nav {
-  border-bottom: grey 1px solid;
+  // border-bottom: grey 1px solid;
   position: fixed;
-  background: white;
+  // background: white;
+
   width: 100%;
 
   &__list {
@@ -19,7 +20,14 @@
     &.current-item,
     &:focus,
     a.active {
-      text-decoration: underline;
+      // text-decoration: underline;
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+
+    a,
+    button {
+      color: white;
     }
   }
 }

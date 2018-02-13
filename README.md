@@ -30,7 +30,6 @@ npm run validate
 * ADD PROPS VALIDATION
 * MERGE CLEANING FORMS ACTIONS WITH SUCCESS FORM ACTIONS
 * BLOCK register button if password !== confirm
-* Clear page form after view is destroyed
 
 ## Token logic
 

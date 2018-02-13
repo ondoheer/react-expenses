@@ -1,14 +1,14 @@
-$s-breakpoints: (
-	"0": 0px,
-	"xs": 480px,
-	"md": 960px,
-	"lg": 1280px
-) !default;
+$s-breakpoints: ('0': 0px, 'xs': 480px, 'md': 960px, 'lg': 1280px) !default;
 
 // colors
-$red : #db2828;
-$dark-red: #5B1111;
-$green: #61DF61;
-$dark-green: #44A80E;
-$blue: #0E6DA8;
-$dark-blue: #135F8E;
+$red: #db2828;
+$dark-red: #5b1111;
+$green: #61df61;
+$dark-green: #44a80e;
+$blue: #0e6da8;
+$dark-blue: #135f8e;
+
+$main: #80a1c1;
+$main-dark: #5d8fc1;
+$main-light: #b9d5f2;
+$secondary: #989aa5;

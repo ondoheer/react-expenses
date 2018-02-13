@@ -7,12 +7,12 @@
     line-height: 35px;
   }
 
-  &-head {
+  &__head {
     font-weight: bold;
-    text-align: left;
+    // text-align: left;
   }
 
-  &-data {
+  &__data {
     padding-right: 45px;
     text-transform: capitalize;
 
