@@ -1,44 +1,46 @@
+import { MONTH_DATA_RECEIVED } from './homepage';
+import { omit } from 'ramda';
+
 /**
  * constants
  */
 export const TOGGLE_ACCORDEON_ITEM = 'TOGGLE_ACCORDEON_ITEM';
+export const POPULATE_ACCDORDEON_TABS = 'POPULATE_ACCDORDEON_TABS';
 
 /**
  * action creators
  */
-export const toggleAccordeonItem = index => ({
+export const toggleAccordeonItem = id => ({
   type: TOGGLE_ACCORDEON_ITEM,
-  index: index
+  id
 });
+
+export const populateAccordeonTabs = months => ({
+  type: POPULATE_ACCDORDEON_TABS,
+  months
+});
+
+/**
+ * Heroes
+ */
 
 /**
  * reducer
  */
-export default (
-  state = {
-    months: [
-      {
-        open: false
+export default (state = {}, action) => {
+  switch (action.type) {
+    case TOGGLE_ACCORDEON_ITEM:
+      if (state[action.id]) {
+        return omit([action.id], state);
       }
-    ]
-  },
-  action
-) => {
-  if (action.type === TOGGLE_ACCORDEON_ITEM) {
-    return {
-      ...state,
-      months: state.months.map((month, index) => {
-        if (index === action.index) {
-          return {
-            ...month,
-            open: !month.open
-          };
-        }
-        return month;
-      })
-    };
+      return {
+        ...state,
+        [action.id]: true
+      };
+
+    default:
+      return state;
   }
-  return state;
 };
 
 /**

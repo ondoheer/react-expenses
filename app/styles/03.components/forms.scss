@@ -5,7 +5,7 @@
 
   max-width: 320px;
   margin: 0 auto;
-  padding-top: 60px;
+  padding-top: 50px;
 
   &--expense,
   &--login {
@@ -40,5 +40,39 @@
         text-transform: capitalize;
       }
     }
+  }
+
+  fieldset {
+    width: 100%;
+    position: relative;
+  }
+  .c-input__search {
+    float: left;
+    width: 100%;
+    border: 3px solid $main;
+    padding: 5px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 5px;
+    outline: none;
+    color: #9dbfaf;
+
+    &:focus {
+      color: $main;
+    }
+  }
+  .c-input__search-button {
+    position: absolute;
+    right: 0px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid $main;
+    background: $main;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
   }
 }

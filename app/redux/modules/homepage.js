@@ -1,7 +1,7 @@
 /****
  * Constants
  */
-const GET_MAIN_DATA = 'GET_MAIN_DATA';
+export const MONTH_DATA_RECEIVED = 'MONTH_DATA_RECEIVED';
 
 /**
  * action creators
@@ -23,7 +23,7 @@ export default (
   action
 ) => {
   switch (action.type) {
-    case GET_MAIN_DATA:
+    case MONTH_DATA_RECEIVED:
       return { ...state, months: action.data };
     default:
       return state;
@@ -59,10 +59,10 @@ export const homeDataAction = () => {
         return res.json();
       })
       .then(json => {
-        dispatch({ type: GET_MAIN_DATA, data: json });
+        dispatch({ type: MONTH_DATA_RECEIVED, data: json });
       })
       .catch(error => {
-        console.error(error.status);
+        console.error(error);
       });
   };
 };

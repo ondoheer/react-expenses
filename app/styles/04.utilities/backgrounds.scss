@@ -1,7 +1,6 @@
 .u-bkg {
   &--main-color {
     background-color: $main;
-    color: white;
   }
   &--red {
     background-color: $red;
@@ -19,5 +18,11 @@
 .u-link {
   &--dark-green {
     color: $dark-green;
+  }
+}
+
+.u-color {
+  &--white {
+    color: white;
   }
 }

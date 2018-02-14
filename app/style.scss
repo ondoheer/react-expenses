@@ -15,7 +15,9 @@
   'styles/03.components/pagination',
   'styles/03.components/table';
 
-@import 'styles/04.utilities/backgrounds', 'styles/04.utilities/titles';
+@import 'styles/04.utilities/backgrounds',
+  'styles/04.utilities/text',
+  'styles/04.utilities/titles';
 
 body {
   font-family: $main-text;

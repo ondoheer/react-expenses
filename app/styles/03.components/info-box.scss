@@ -1,11 +1,15 @@
 .c-info-box {
-  border: 2px dashed;
+  border: 2px dashed $main;
   padding: 20px;
   line-height: 1.5;
   margin-top: 30px;
+  color: $main;
 
-  strong {
+  &__title {
     font-weight: bold;
+    font-family: $titles;
+    font-size: 22px;
+    padding-bottom: 20px;
   }
 
   &__list {

@@ -7,7 +7,7 @@ import HeaderNav from '../../components/partials/HeaderNav';
 import AddExpenseButton from '../../components/partials/AddExpenseButton';
 import SearchExpensesForm from '../../components/forms/SearchExpensesForm';
 import ExpensesTable from '../../components/partials/ExpensesTable';
-import PlaceholderTable from '../../components/partials/PlaceholderTable';
+
 import PaginatorForm from '../../components/forms/PaginatorForm';
 
 // Reducers
@@ -58,16 +58,16 @@ const mapDispatchToProps = dispatch => {
 };
 
 const ExpensesContainer = props => (
-  <div className="main-container">
+  <div className="">
     <HeaderNav logoutRemoveTokens={props.logoutRemoveTokens} />
-    <div className="c-form-container">
+    <div className="c-main-container">
       <SearchExpensesForm
         setSearchInput={props.setSearchInput}
         getExpenses={props.getExpenses}
       />
+
       <ExpensesTable expenses={props.expenses} />
-      <hr />
-      <PlaceholderTable expenses={props.expenses} />
+
       <PaginatorForm
         page={props.page}
         pages={props.pages}

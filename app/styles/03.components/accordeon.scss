@@ -1,8 +1,6 @@
 .c-accordeon {
   max-width: 320px;
   margin: 0 auto;
-  //border: 1px solid #dbd4d3;
-  border-bottom: 1px solid #dbd4d3;
 
   border-radius: 2px;
   color: #989aa5;
@@ -26,6 +24,12 @@
         display: none;
       }
     }
+
+    &:first-child {
+      font-weight: 500;
+      // border-color: #b9d5f2;
+      color: $main-dark;
+    }
   }
 
   &__month-tab {
@@ -33,10 +37,6 @@
     //border-bottom: 1px solid grey;
     padding: 5px 10px;
     line-height: 1.5;
-
-    &:last-child {
-      border: none;
-    }
 
     &--plus::after {
       content: '\002B';

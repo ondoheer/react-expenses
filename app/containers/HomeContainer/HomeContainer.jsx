@@ -12,16 +12,18 @@ import { logoutRemoveTokens } from '../../redux/modules/auth';
 
 import { homeDataAction } from '../../redux/modules/homepage';
 
-const mapStateToProps = state => ({
-  toggleAccordeonMonths: state.accordeon.months,
-  months: state.homepage.months,
-  logoutRemoveTokens: logoutRemoveTokens
-});
-
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    accordeonOpenMonths: state.accordeon,
+    months: state.homepage.months,
+    logoutRemoveTokens: logoutRemoveTokens
+  };
+};
 const mapDispatchToProps = dispatch => {
   return {
-    toggleAccordeon: index => {
-      dispatch(toggleAccordeonItem(index));
+    toggleAccordeon: id => {
+      dispatch(toggleAccordeonItem(id));
     },
     getHomeData: () => {
       dispatch(homeDataAction());
@@ -32,28 +34,13 @@ const mapDispatchToProps = dispatch => {
 const HomeContainer = props => (
   <div className="c-main-container">
     <HeaderNav logoutRemoveTokens={props.logoutRemoveTokens} />
-    <TotalExpenses month={props.months[0]} />
-    <MonthsAccordeon
-      first="first"
-      toggleAccordeon={props.toggleAccordeon}
-      months={props.months}
-      toggleAccordeonMonths={props.toggleAccordeonMonths}
-    />
+    <TotalExpenses />
     <MonthsAccordeon
       toggleAccordeon={props.toggleAccordeon}
       months={props.months}
-      toggleAccordeonMonths={props.toggleAccordeonMonths}
+      accordeonOpenMonths={props.accordeonOpenMonths}
     />
-    <MonthsAccordeon
-      toggleAccordeon={props.toggleAccordeon}
-      months={props.months}
-      toggleAccordeonMonths={props.toggleAccordeonMonths}
-    />
-    <MonthsAccordeon
-      toggleAccordeon={props.toggleAccordeon}
-      months={props.months}
-      toggleAccordeonMonths={props.toggleAccordeonMonths}
-    />
+
     <AddExpenseButton />
   </div>
 );

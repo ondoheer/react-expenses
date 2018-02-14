@@ -19,7 +19,7 @@ const ExpensesTable = props => (
   //     ))}
   //   </tbody> */}
   // </table>
-  <div className="">
+  <div className="c-table">
     <div className="c-table__row l-grid-212">
       <div className="c-table__head">Name</div>
       <div className="c-table__head">Amount</div>
@@ -27,8 +27,8 @@ const ExpensesTable = props => (
     </div>
     {props.expenses.map(expense => (
       <div className="c-table__row l-grid-212">
-        <div className="c-table__data">{expense.name}</div>
-        <div className="c-table__data">{expense.amount}</div>
+        <div className="c-table__data u-align--left">{expense.name}</div>
+        <div className="c-table__data">S/ {expense.amount}</div>
         <div className="c-table__data">{expense.date}</div>
       </div>
     ))}

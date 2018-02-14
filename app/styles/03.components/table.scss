@@ -1,7 +1,6 @@
 .c-table {
-  max-width: 360px;
-  margin: 0 auto;
   margin-top: 50px;
+  text-align: center;
 
   &-row {
     line-height: 35px;
@@ -13,11 +12,6 @@
   }
 
   &__data {
-    padding-right: 45px;
     text-transform: capitalize;
-
-    &:last-child {
-      padding-right: 0;
-    }
   }
 }

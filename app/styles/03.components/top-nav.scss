@@ -1,6 +1,8 @@
 .c-top-nav {
   // border-bottom: grey 1px solid;
   position: fixed;
+  z-index: 999;
+  top: 0;
   // background: white;
 
   width: 100%;
@@ -23,6 +25,8 @@
       // text-decoration: underline;
       font-size: 1.3rem;
       font-weight: bold;
+      position: relative;
+      top: -1px;
     }
 
     a,
