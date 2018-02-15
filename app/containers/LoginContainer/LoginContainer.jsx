@@ -26,15 +26,9 @@ const mapDispatchToProps = dispatch => {
 };
 
 const LoginContainer = props => {
-  return (
-    <div className="login-container u-bkg--green">
-      <LoginForm
-        loginHandler={props.loginHandler}
-        setEmail={props.setEmail}
-        setPassword={props.setPassword}
-      />
-    </div>
-  );
+  return <div className="login-container u-bkg--main-color">
+      <LoginForm loginHandler={props.loginHandler} setEmail={props.setEmail} setPassword={props.setPassword} />
+    </div>;
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

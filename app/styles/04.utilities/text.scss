@@ -3,3 +3,23 @@
     text-align: left;
   }
 }
+
+.u-link {
+  &--dark-green {
+    color: $dark-green;
+  }
+
+  &--main-color{
+    color:$main
+  }
+
+  &--secondary-color{
+    color:$secondary
+  }
+}
+
+.u-color {
+  &--white {
+    color: white;
+  }
+}

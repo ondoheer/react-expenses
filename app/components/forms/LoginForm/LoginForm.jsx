@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const LoginForm = props => (
-  <div className="c-form-container u-bkg--green">
+  <div className="c-form-container ">
     <form className="c-form c-form--login" onSubmit={props.loginHandler}>
       <label htmlFor="email" className="c-form__label">
         Email
@@ -27,13 +27,13 @@ const LoginForm = props => (
         value={props.passwordInput}
       />
 
-      <button className="c-button c-button--submit c-button--dark-green">
+      <button className="c-button c-button--submit c-button--secondary-color">
         Login
       </button>
-      <div className="c-info-box">
+      <div className="c-info-box c-info-box--white">
         <p>
           Or maybe{' '}
-          <NavLink className="u-link--dark-green" to="/register">
+          <NavLink className="u-link--secondary-color" to="/register">
             register
           </NavLink>{' '}
           ?

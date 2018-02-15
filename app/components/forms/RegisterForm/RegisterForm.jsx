@@ -1,7 +1,8 @@
 import React from 'react';
+import { NavLink } from "react-router-dom";
 
 const RegisterForm = props => (
-  <div className="c-form-container u-bkg--green">
+  <div className="c-form-container ">
     <form className="c-form c-form--login" onSubmit={props.registerHandler}>
       <label htmlFor="fullname" className="c-form__label">
         Full name
@@ -47,9 +48,19 @@ const RegisterForm = props => (
         value={props.confirmInput}
       />
 
-      <button className="c-button c-button--submit c-button--dark-green">
+      <button className="c-button c-button--submit c-button--secondary-color">
         Register
       </button>
+
+      <div className="c-info-box c-info-box--white">
+        <p>
+          If you already have a user just{" "}
+          <NavLink className="u-link--secondary-color" to="/login">
+            login
+          </NavLink>
+          
+        </p>
+      </div>
     </form>
   </div>
 );

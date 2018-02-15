@@ -15,7 +15,7 @@ const AddCategoryForm = props => (
         placeholder="Enter new category name"
       />
 
-      <button className="c-button c-button--submit c-button--main-color">
+      <button className="c-button c-button--submit c-button--secondary-color">
         add category
       </button>
 

@@ -13,7 +13,7 @@ import { logoutRemoveTokens } from '../../redux/modules/auth';
 import { homeDataAction } from '../../redux/modules/homepage';
 
 const mapStateToProps = state => {
-  console.log(state);
+  
   return {
     accordeonOpenMonths: state.accordeon,
     months: state.homepage.months,

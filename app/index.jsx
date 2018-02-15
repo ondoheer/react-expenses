@@ -6,6 +6,7 @@ import store from './redux/store';
 import App from './components/App';
 import './style.scss';
 
+
 import { createBrowserHistory } from 'history';
 
 export default createBrowserHistory();

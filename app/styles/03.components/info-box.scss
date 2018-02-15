@@ -5,6 +5,11 @@
   margin-top: 30px;
   color: $main;
 
+  &--white {
+    border-color: white;
+    color: white;
+  }
+
   &__title {
     font-weight: bold;
     font-family: $titles;

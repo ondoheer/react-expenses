@@ -33,6 +33,9 @@
   }
 
   &__month-tab {
+
+    display: grid;
+    grid-template-columns: 4fr 2fr 10px;
     font-size: 1.3em;
     //border-bottom: 1px solid grey;
     padding: 5px 10px;
