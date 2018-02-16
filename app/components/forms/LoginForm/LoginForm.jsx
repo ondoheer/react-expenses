@@ -1,5 +1,7 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import { NavLink } from "react-router-dom";
+
+import FlashBox from "../../partials/FlashBox";
 
 const LoginForm = props => (
   <div className="c-form-container ">
@@ -30,12 +32,15 @@ const LoginForm = props => (
       <button className="c-button c-button--submit c-button--secondary-color">
         Login
       </button>
+
+      {props.error ? <FlashBox error={props.error} /> : ""}
+
       <div className="c-info-box c-info-box--white">
         <p>
-          Or maybe{' '}
+          Or maybe{" "}
           <NavLink className="u-link--secondary-color" to="/register">
             register
-          </NavLink>{' '}
+          </NavLink>{" "}
           ?
         </p>
       </div>

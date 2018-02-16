@@ -55,3 +55,7 @@ check if user has an auth token
     if not have auth token
         go to login
 ```
+
+Check to build a higher order component to handle routes auth state
+
+JWT returns 422 if bad token or 401 if token has expired

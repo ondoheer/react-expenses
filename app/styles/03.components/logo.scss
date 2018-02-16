@@ -1,0 +1,17 @@
+.c-logo{
+
+    font-family: $logo;
+    color: $secondary;
+    padding-top: 50px;
+    font-size: 40px;
+    text-align: center;
+
+    .icon-euro::before,
+    .icon-dollar::before{
+        margin-right: -8px;
+        margin-left: 0;
+        font-size: 55px;
+    }
+        
+    
+}

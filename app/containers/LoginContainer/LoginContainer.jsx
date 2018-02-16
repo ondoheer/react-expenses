@@ -1,12 +1,14 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
-import LoginForm from '../../components/forms/LoginForm';
-import { loginAction, setPassword, setEmail } from '../../redux/modules/auth';
+import LoginForm from "../../components/forms/LoginForm";
+import Logo from "../../components/partials/Logo";
+import { loginAction, setPassword, setEmail } from "../../redux/modules/auth";
 
 const mapStateToProps = state => ({
   emailInput: state.auth.emailInput,
-  passwordInput: state.auth.passwordInput
+  passwordInput: state.auth.passwordInput,
+  error: state.error.error
 });
 
 const mapDispatchToProps = dispatch => {
@@ -17,8 +19,8 @@ const mapDispatchToProps = dispatch => {
     setPassword: evt => {
       dispatch(setPassword(evt.target.value));
     },
+
     loginHandler: evt => {
-      console.log(evt);
       evt.preventDefault();
       dispatch(loginAction());
     }
@@ -26,9 +28,17 @@ const mapDispatchToProps = dispatch => {
 };
 
 const LoginContainer = props => {
-  return <div className="login-container u-bkg--main-color">
-      <LoginForm loginHandler={props.loginHandler} setEmail={props.setEmail} setPassword={props.setPassword} />
-    </div>;
+  return (
+    <div className="login-container u-bkg--main-color">
+      <Logo />
+      <LoginForm
+        loginHandler={props.loginHandler}
+        setEmail={props.setEmail}
+        setPassword={props.setPassword}
+        error={props.error}
+      />
+    </div>
+  );
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

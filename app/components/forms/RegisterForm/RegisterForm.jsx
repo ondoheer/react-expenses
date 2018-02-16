@@ -1,5 +1,6 @@
-import React from 'react';
+import React from "react";
 import { NavLink } from "react-router-dom";
+import FlashBox from "../../partials/FlashBox";
 
 const RegisterForm = props => (
   <div className="c-form-container ">
@@ -48,9 +49,16 @@ const RegisterForm = props => (
         value={props.confirmInput}
       />
 
-      <button className="c-button c-button--submit c-button--secondary-color">
+      <button
+        type="button"
+        onClick={props.registerHandler}
+        disabled={props.confirmInput !== props.passwordInput}
+        className="c-button c-button--submit c-button--secondary-color"
+      >
         Register
       </button>
+
+      {props.error ? <FlashBox error={props.error} /> : ""}
 
       <div className="c-info-box c-info-box--white">
         <p>
@@ -58,7 +66,6 @@ const RegisterForm = props => (
           <NavLink className="u-link--secondary-color" to="/login">
             login
           </NavLink>
-          
         </p>
       </div>
     </form>

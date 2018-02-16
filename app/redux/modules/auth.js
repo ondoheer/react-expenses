@@ -1,32 +1,25 @@
-import history from '../../index';
-
+import history from "../../index";
+import { requestError, requestsErrorMap, CLEAR_ERROR } from "./errors";
 /**
  * constants
  */
-export const AUTHENTICATED = 'AUTHENTICATED';
-export const UNAUTHENTICATED = 'UNAUTHENTICATED';
-export const AUTHENTICATION_ERROR = 'AUTHENTICATION_ERROR';
-export const SET_EMAIL = 'SET_EMAIL';
-export const SET_PASSWORD = 'SET_PASSWORD';
-export const SET_FULLNAME = 'SET_FULLNAME';
-export const SET_CONFIRM = 'SET_CONFIRM';
-export const CLEAR_AUTH_FORMS_DATA = 'CLEAR_AUTH_FORMS_DATA';
-export const REGISTER_ERROR = 'REGISTER_ERROR';
-export const LOGOUT = 'LOGOUT';
+export const AUTHENTICATED = "AUTHENTICATED";
+export const UNAUTHENTICATED = "UNAUTHENTICATED";
+
+export const SET_EMAIL = "SET_EMAIL";
+export const SET_PASSWORD = "SET_PASSWORD";
+export const SET_FULLNAME = "SET_FULLNAME";
+export const SET_CONFIRM = "SET_CONFIRM";
+export const CLEAR_AUTH_FORMS_DATA = "CLEAR_AUTH_FORMS_DATA";
+
+export const LOGOUT = "LOGOUT";
 
 /**
  * action creators
  */
 export const authenticated = { type: AUTHENTICATED };
 export const unauthenticated = { type: UNAUTHENTICATED };
-export const authError = error => ({
-  type: AUTHENTICATION_ERROR,
-  payload: error
-});
-export const registerError = error => ({
-  type: REGISTER_ERROR,
-  payload: error
-});
+
 export const clearAuthFormsData = {
   type: CLEAR_AUTH_FORMS_DATA
 };
@@ -57,10 +50,10 @@ export const setConfirm = value => ({
  */
 export default (
   state = {
-    emailInput: '',
-    passwordInput: '',
-    fullNameInput: '',
-    confirmInput: ''
+    emailInput: "",
+    passwordInput: "",
+    fullNameInput: "",
+    confirmInput: ""
   },
   action
 ) => {
@@ -71,10 +64,7 @@ export default (
       return state;
     case LOGOUT:
       return state;
-    case AUTHENTICATION_ERROR:
-      return { ...state, error: action.payload };
-    case REGISTER_ERROR:
-      return { ...state, error: action.payload };
+
     case SET_EMAIL:
       return { ...state, emailInput: action.value };
     case SET_PASSWORD:
@@ -84,7 +74,7 @@ export default (
     case SET_FULLNAME:
       return { ...state, fullNameInput: action.value };
     case CLEAR_AUTH_FORMS_DATA:
-      return { ...state, emailInput: '', passwordInput: '' };
+      return { ...state, emailInput: "", passwordInput: "" };
 
     default:
       return state;
@@ -95,21 +85,22 @@ export default (
  *  Undiscovered heroes
  */
 export const logoutRemoveTokens = () => {
-  localStorage.removeItem('access_token');
-  localStorage.removeItem('refresh_token');
+  localStorage.removeItem("access_token");
+  localStorage.removeItem("refresh_token");
 
-  history.push('/');
+  history.push("/");
 };
 
 /**
  * epics
  */
 
-const URL = 'http://localhost:5000';
+const URL = "http://localhost:5000";
 const BaseParams = {
-  method: 'POST',
-  headers: new Headers({ 'Content-Type': 'application/json' })
+  method: "POST",
+  headers: new Headers({ "Content-Type": "application/json" })
 };
+let queryArgs = "";
 
 /**
  * So far the only way I have found is to push when you go somewhere else and
@@ -117,9 +108,9 @@ const BaseParams = {
  * after I have solved the callback hell
  */
 const AuthMiddleware = () => {
-  let access_token = localStorage.getItem('access_token');
+  let access_token = localStorage.getItem("access_token");
   if (!access_token) {
-    history.push('/login');
+    history.push("/login");
   } else {
   }
 };
@@ -127,6 +118,9 @@ const AuthMiddleware = () => {
 export const loginAction = () => {
   return (dispatch, getState) => {
     const state = getState();
+    // clear the errors bucket
+    dispatch({ type: CLEAR_ERROR });
+
     const params = {
       ...BaseParams,
       body: JSON.stringify({
@@ -144,15 +138,13 @@ export const loginAction = () => {
       .then(json => {
         dispatch({ type: AUTHENTICATED });
         dispatch({ type: CLEAR_AUTH_FORMS_DATA });
-        localStorage.setItem('access_token', json.access_token);
-        localStorage.setItem('refresh_token', json.refresh_token);
-        history.push('/');
+        localStorage.setItem("access_token", json.access_token);
+        localStorage.setItem("refresh_token", json.refresh_token);
+        console.log("from login before pushing new address");
+        history.push("/");
       })
       .catch(error => {
-        dispatch({
-          type: AUTHENTICATION_ERROR,
-          payload: 'Auth general error'
-        });
+        dispatch(requestError(requestsErrorMap[error.message]));
       });
   };
 };
@@ -160,6 +152,10 @@ export const loginAction = () => {
 export const registerAction = () => {
   return (dispatch, getState) => {
     const state = getState();
+    // clear the errors bucket
+    dispatch({
+      type: CLEAR_ERROR
+    });
 
     const params = {
       ...BaseParams,
@@ -171,27 +167,30 @@ export const registerAction = () => {
       })
     };
 
+    // clean the error pool
+
     // debugger;
     const res = fetch(`${URL}/register`, params)
       .then(res => {
         if (!res.ok) {
           throw new Error(res.status);
         }
-        // debugger;
+
         return res.json();
       })
       .then(json => {
-        dispatch({ type: AUTHENTICATED });
-        dispatch({ type: CLEAR_AUTH_FORMS_DATA });
-        localStorage.setItem('access_token', json.access_token);
-        localStorage.setItem('refresh_token', json.refresh_token);
-        history.push('/');
+        dispatch({
+          type: AUTHENTICATED
+        });
+
+        localStorage.setItem("access_token", json.access_token);
+        localStorage.setItem("refresh_token", json.refresh_token);
+        history.push("/");
       })
       .catch(error => {
-        dispatch({
-          type: REGISTER_ERROR,
-          payload: 'Email or password already exists'
-        });
+        console.error(error.message);
+
+        dispatch(requestError(requestsErrorMap[error.message]));
       });
   };
 };

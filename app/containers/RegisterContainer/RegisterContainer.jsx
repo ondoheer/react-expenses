@@ -1,7 +1,8 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
-import RegisterForm from '../../components/forms/RegisterForm';
+import Logo from "../../components/partials/Logo";
+import RegisterForm from "../../components/forms/RegisterForm";
 import {
   // RegisterAction,
   setPassword,
@@ -9,13 +10,14 @@ import {
   setFullName,
   setConfirm,
   registerAction
-} from '../../redux/modules/auth';
+} from "../../redux/modules/auth";
 
 const mapStateToProps = state => ({
   emailInput: state.auth.emailInput,
   passwordInput: state.auth.passwordInput,
   fullNameInput: state.auth.fullNameInput,
-  confirmInput: state.auth.confirmInput
+  confirmInput: state.auth.confirmInput,
+  error: state.error.error
 });
 
 const mapDispatchToProps = dispatch => {
@@ -33,19 +35,23 @@ const mapDispatchToProps = dispatch => {
       dispatch(setConfirm(evt.target.value));
     },
     registerHandler: evt => {
-      evt.preventDefault;
       dispatch(registerAction());
     }
   };
 };
 const RegisterContainer = props => (
   <div className="register-container u-bkg--main-color">
+    <Logo />
     <RegisterForm
       setEmail={props.setEmail}
       setPassword={props.setPassword}
       setFullName={props.setFullName}
       setConfirm={props.setConfirm}
       registerHandler={props.registerHandler}
+      fullNameInput={props.fullNameInput}
+      confirmInput={props.confirmInput}
+      passwordInput={props.passwordInput}
+      error={props.error}
     />
   </div>
 );

@@ -22,4 +22,14 @@
   &--white {
     color: white;
   }
+  &--main {
+    color: $main;
+  }
+  &--secondary {
+    color: $secondary
+  }
+}
+
+.u-bold {
+  font-weight: bold;
 }

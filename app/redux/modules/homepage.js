@@ -1,7 +1,9 @@
+import fetchWithJWT from "../../utils/fetchWithJWT";
+
 /****
  * Constants
  */
-export const MONTH_DATA_RECEIVED = 'MONTH_DATA_RECEIVED';
+export const MONTH_DATA_RECEIVED = "MONTH_DATA_RECEIVED";
 
 /**
  * action creators
@@ -15,7 +17,7 @@ export default (
   state = {
     months: [
       {
-        id: '0000-00-00',
+        id: "0000-00-00",
         categories: []
       }
     ]
@@ -32,29 +34,24 @@ export default (
 /**
  * epics
  */
-const URL = 'http://localhost:5000';
+const URL = "http://localhost:5000";
 const BaseParams = {
-  method: 'POST',
-  headers: new Headers({ 'Content-Type': 'application/json' })
+  method: "POST",
+  headers: new Headers({ "Content-Type": "application/json" })
 };
 
 export const homeDataAction = () => {
   return (dispatch, getState) => {
     const state = getState();
 
-    const access_token = localStorage.getItem('access_token');
+    const access_token = localStorage.getItem("access_token");
 
-    if (!access_token) {
-      console.error('Un authorized request');
-      history.push('/login');
-    }
-    BaseParams.headers.set('Authorization', `Bearer ${access_token}`);
-    const params = { ...BaseParams, method: 'GET' };
+    const params = { ...BaseParams, method: "GET" };
 
-    const res = fetch(`${URL}/main`, params)
+    const res = fetchWithJWT("main", "", params)
       .then(res => {
         if (!res.ok && res.status === 401) {
-          console.log('trying to refresh token');
+          console.log("trying to refresh token");
         }
         return res.json();
       })

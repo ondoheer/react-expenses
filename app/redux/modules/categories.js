@@ -1,15 +1,15 @@
-import history from '../../index';
-
+import history from "../../index";
+import fetchWithJWT from "../../utils/fetchWithJWT";
 /**
  * constants
  */
 
-export const ADD_CATEGORY_NAME = 'ADD_CATEGORY_NAME';
-export const CATEGORY_ADDED = 'CATEGORY_ADDED';
-export const CLEAR_ADD_CATEGORY_FORM = 'CLEAR_ADD_CATEGORY_FORM';
-export const ADD_CATEGORY_ERROR = 'ADD_CATEGORY_ERROR';
+export const ADD_CATEGORY_NAME = "ADD_CATEGORY_NAME";
+export const CATEGORY_ADDED = "CATEGORY_ADDED";
+export const CLEAR_ADD_CATEGORY_FORM = "CLEAR_ADD_CATEGORY_FORM";
+export const ADD_CATEGORY_ERROR = "ADD_CATEGORY_ERROR";
 
-export const GET_CATEGORIES = 'GET_CATEGORIES';
+export const GET_CATEGORIES = "GET_CATEGORIES";
 /**
  * action creators
  */
@@ -35,7 +35,7 @@ export const setCategoryName = value => ({
 
 export default (
   state = {
-    nameInput: '',
+    nameInput: "",
     categories: []
   },
   action
@@ -48,7 +48,7 @@ export default (
     case CATEGORY_ADDED:
       return { ...state, categories: [...state.categories, action.category] };
     case CLEAR_ADD_CATEGORY_FORM:
-      return { ...state, nameInput: '' };
+      return { ...state, nameInput: "" };
 
     default:
       return state;
@@ -58,30 +58,25 @@ export default (
 /**
  * epics
  */
-const URL = 'http://localhost:5000';
+const URL = "http://localhost:5000";
 const BaseParams = {
-  method: 'POST',
-  headers: new Headers({ 'Content-Type': 'application/json' }),
-  mode: 'cors'
+  method: "POST",
+  headers: new Headers({ "Content-Type": "application/json" }),
+  mode: "cors"
 };
 
 export const getCategoriesAction = () => {
   return (dispatch, getState) => {
     const state = getState();
-    const access_token = localStorage.getItem('access_token');
-    if (!access_token) {
-      throw new Error('Un authorized request');
-      history.push('/login');
-    }
-    BaseParams.headers.set('Authorization', `Bearer ${access_token}`);
+
     const params = {
       ...BaseParams,
-      method: 'GET'
+      method: "GET"
     };
-    const res = fetch(`${URL}/category`, params)
+    const res = fetchWithJWT("category", "", params)
       .then(res => {
         if (!res.ok) {
-          throw new Error('Error fetching categories');
+          throw new Error("Error fetching categories");
         }
         return res.json();
       })
@@ -101,13 +96,6 @@ export const addCategoryAction = () => {
   return (dispatch, getState) => {
     const state = getState();
 
-    const access_token = localStorage.getItem('access_token');
-
-    if (!access_token) {
-      history.push('/login');
-      //throw new Error('Un authorized request');
-    }
-    BaseParams.headers.set('Authorization', `Bearer ${access_token}`);
     const params = {
       ...BaseParams,
       body: JSON.stringify({
@@ -115,7 +103,7 @@ export const addCategoryAction = () => {
       })
     };
 
-    const res = fetch(`${URL}/category`, params)
+    const res = fetchWithJWT("category", "", params)
       .then(res => {
         if (!res.ok) {
           throw new Error(res.status);

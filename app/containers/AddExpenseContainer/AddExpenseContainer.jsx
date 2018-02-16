@@ -50,7 +50,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 const AddExpenseContainer = props => (
-  <div className="main-container">
+  <div className="c-main-container">
     <HeaderNav logoutRemoveTokens={props.logoutRemoveTokens} />
     <AddExpenseForm
       setExpenseName={props.setExpenseName}

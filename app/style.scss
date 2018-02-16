@@ -1,25 +1,25 @@
-@import 'styles/00.resets/reset';
+@import "styles/00.resets/reset";
 
-@import 'styles/01.settings/variables',
-  'styles/01.settings/queries',
-  'styles/01.settings/fonts',
-  'styles/01.settings/base';
-@import 'styles/02.layouts/grid';
-@import 'styles/03.components/containers',
-  'styles/03.components/buttons',
-  'styles/03.components/top-nav',
-  'styles/03.components/accordeon',
-  'styles/03.components/total-expenses',
-  'styles/03.components/forms',
-  'styles/03.components/info-box',
-  'styles/03.components/pagination',
-  'styles/03.components/table';
+@import "styles/01.settings/variables",
+  "styles/01.settings/queries",
+  "styles/01.settings/fonts",
+  "styles/01.settings/base";
+@import "styles/02.layouts/grid";
+@import "styles/03.components/containers",
+  "styles/03.components/buttons",
+  "styles/03.components/top-nav",
+  "styles/03.components/accordeon",
+  "styles/03.components/total-expenses",
+  "styles/03.components/forms",
+  "styles/03.components/info-box",
+  "styles/03.components/pagination",
+  "styles/03.components/logo",
+  "styles/03.components/flashbox",
+  "styles/03.components/table";
 
-@import 'styles/04.utilities/backgrounds',
-  'styles/04.utilities/text',
-  'styles/04.utilities/titles';
-
-
+@import "styles/04.utilities/backgrounds",
+  "styles/04.utilities/text",
+  "styles/04.utilities/titles";
 
 body {
   font-family: $main-text;

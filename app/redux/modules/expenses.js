@@ -1,21 +1,21 @@
-import history from '../../index';
-
+import history from "../../index";
+import fetchWithJWT from "../../utils/fetchWithJWT";
 /**
  * constants
  */
 
-export const ADD_EXPENSE_NAME = 'ADD_EXPENSE_NAME';
-export const ADD_EXPENSE_AMOUNT = 'ADD_EXPENSE_AMOUNT';
-export const SELECT_EXPENSE_CATEGORY = 'SELECT_EXPENSE_CATEGORY';
-export const EXPENSE_ADDED = 'EXPENSE_ADDED';
-export const CLEAR_ADD_EXPENSE_FORM = 'CLEAR_ADD_EXPENSE_FORM';
-export const ADD_EXPENSE_ERROR = 'ADD_EXPENSE_ERROR';
-export const GET_LAST_EXPENSE = 'GET_LAST_EXPENSE';
-export const GET_FILTERED_EXPENSES = 'GET_FILTERED_EXPENSES';
-export const SET_SEARCH_INPUT = 'SET_SEARCH_INPUT';
-export const SET_PAGE = 'SET_PAGE';
-export const INCREASE_PAGE = 'INCREASE_PAGE';
-export const DECREASE_PAGE = 'DECREASE_PAGE';
+export const ADD_EXPENSE_NAME = "ADD_EXPENSE_NAME";
+export const ADD_EXPENSE_AMOUNT = "ADD_EXPENSE_AMOUNT";
+export const SELECT_EXPENSE_CATEGORY = "SELECT_EXPENSE_CATEGORY";
+export const EXPENSE_ADDED = "EXPENSE_ADDED";
+export const CLEAR_ADD_EXPENSE_FORM = "CLEAR_ADD_EXPENSE_FORM";
+export const ADD_EXPENSE_ERROR = "ADD_EXPENSE_ERROR";
+export const GET_LAST_EXPENSE = "GET_LAST_EXPENSE";
+export const GET_FILTERED_EXPENSES = "GET_FILTERED_EXPENSES";
+export const SET_SEARCH_INPUT = "SET_SEARCH_INPUT";
+export const SET_PAGE = "SET_PAGE";
+export const INCREASE_PAGE = "INCREASE_PAGE";
+export const DECREASE_PAGE = "DECREASE_PAGE";
 
 /**
  * action creators
@@ -69,11 +69,11 @@ export const decreasePage = {
 
 export default (
   state = {
-    nameInput: '',
-    amountInput: '',
-    categoryInput: '',
-    lastExpense: '',
-    searchInput: '',
+    nameInput: "",
+    amountInput: "",
+    categoryInput: "",
+    lastExpense: "",
+    searchInput: "",
     perPage: 10,
     page: 1,
     expenses: {
@@ -114,10 +114,10 @@ export default (
 /**
  * epics
  */
-const URL = 'http://localhost:5000';
+const URL = "http://localhost:5000";
 const BaseParams = {
-  method: 'POST',
-  headers: new Headers({ 'Content-Type': 'application/json' })
+  method: "POST",
+  headers: new Headers({ "Content-Type": "application/json" })
 };
 
 /**
@@ -126,20 +126,14 @@ const BaseParams = {
 export const getLastExpense = () => {
   return (dispatch, getState) => {
     const state = getState();
-    const access_token = localStorage.getItem('access_token');
 
-    if (!access_token) {
-      console.error('Un authorized request');
-      history.push('/login');
-    }
-    BaseParams.headers.set('Authorization', `Bearer ${access_token}`);
     const params = {
       ...BaseParams,
-      method: 'GET'
+      method: "GET"
     };
-    const QUERY_ARGS = '?last=true';
+    const QUERY_ARGS = "?last=true";
 
-    const res = fetch(`${URL}/expense${QUERY_ARGS}`, params)
+    const res = fetchWithJWT("expense", QUERY_ARGS, params)
       .then(res => {
         if (!res.ok) {
           console.error(res.status);
@@ -161,19 +155,13 @@ export const getLastExpense = () => {
 export const getFilteredExpenses = () => {
   return (dispatch, getState) => {
     const state = getState();
-    const access_token = localStorage.getItem('access_token');
 
-    if (!access_token) {
-      history.push('/login');
-    }
-
-    BaseParams.headers.set('Authorization', `Bearer ${access_token}`);
-    const params = { ...BaseParams, method: 'GET' };
+    const params = { ...BaseParams, method: "GET" };
     const QUERY_ARGS = `?page=${state.expenses.page}&per_page=${
       state.expenses.perPage
     }&search=${state.expenses.searchInput}`;
     // debugger;
-    const res = fetch(`${URL}/expense${QUERY_ARGS}`, params)
+    const res = fetchWithJWT("expense", QUERY_ARGS, params)
       .then(res => {
         if (!res.ok) {
           console.error(res.status);
@@ -216,13 +204,6 @@ export const addExpenseAction = () => {
   return (dispatch, getState) => {
     const state = getState();
 
-    const access_token = localStorage.getItem('access_token');
-
-    if (!access_token) {
-      console.error('Un authorized request');
-      history.push('/login');
-    }
-    BaseParams.headers.set('Authorization', `Bearer ${access_token}`);
     const params = {
       ...BaseParams,
       body: JSON.stringify({
@@ -232,7 +213,7 @@ export const addExpenseAction = () => {
       })
     };
 
-    const res = fetch(`${URL}/expense`, params)
+    const res = fetchWithJWT("expense", "", params)
       .then(res => {
         if (!res.ok) {
           console.error(res.status);
@@ -242,7 +223,7 @@ export const addExpenseAction = () => {
       .then(json => {
         dispatch({ type: EXPENSE_ADDED });
         dispatch({ type: CLEAR_ADD_EXPENSE_FORM });
-        history.push('/');
+        history.push("/");
       })
       .catch(error => {
         dispatch({
