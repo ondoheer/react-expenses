@@ -95,7 +95,7 @@ export default (
     case SELECT_EXPENSE_CATEGORY:
       return { ...state, categoryInput: action.value };
     case GET_LAST_EXPENSE:
-      return { ...state, lastExpense: action.data };
+      return { ...state, lastExpense: action.data.expenses[0] };
     case GET_FILTERED_EXPENSES:
       return { ...state, expenses: action.data };
     case SET_SEARCH_INPUT:
