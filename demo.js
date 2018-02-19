@@ -30,8 +30,7 @@ const EnhancedLoginForm = compose(
 
 const fetchWithAuth = (
   url,
-  params,
-  config
+  params
 ) => {
   const authToken = localstorage.get('auth');
 
@@ -67,10 +66,10 @@ fetchWithAuth('/expenses', {a, b, c})
 
 
 
-  const RedirectToLogin = ({ children }) => (
-  notLoggedIn() ?
-    <Redirect path="/login" /> :
-    {children}
+const RedirectToLogin = ({ children }) => (
+notLoggedIn() ?
+<Redirect path="/login" /> :
+{children}
 );
 
 const Router = () => {

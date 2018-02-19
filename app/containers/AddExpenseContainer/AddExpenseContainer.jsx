@@ -1,11 +1,12 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { lifecycle, compose } from 'recompose';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { lifecycle, compose } from "recompose";
 
-import HeaderNav from '../../components/partials/HeaderNav';
-import AddExpenseForm from '../../components/forms/AddExpenseForm';
+import HeaderNav from "../../components/partials/HeaderNav";
+import AddExpenseForm from "../../components/forms/AddExpenseForm";
 
-import { logoutRemoveTokens } from '../../redux/modules/auth';
+import { logoutRemoveTokens } from "../../redux/modules/auth";
 
 import {
   setExpenseName,
@@ -13,15 +14,15 @@ import {
   setExpenseCategory,
   addExpenseAction,
   getLastExpense
-} from '../../redux/modules/expenses';
+} from "../../redux/modules/expenses";
 
-import { getCategoriesAction } from '../../redux/modules/categories';
+import { getCategoriesAction } from "../../redux/modules/categories";
 
 const mapStateToProps = state => ({
   nameInput: state.expenses.nameInput,
   amountInput: state.expenses.amountInput,
   categoryInput: state.expenses.categoryInput,
-  lasExpense: state.expenses.lastExpense,
+  lastExpense: state.expenses.lastExpense,
   categories: state.categories.categories,
   logoutRemoveTokens: logoutRemoveTokens
 });
@@ -58,11 +59,22 @@ const AddExpenseContainer = props => (
       setExpenseCategory={props.setExpenseCategory}
       addExpenseHandler={props.addExpenseHandler}
       getLastExpense={props.getLastExpense}
-      lastExpense={props.lasExpense}
+      lastExpense={props.lastExpense}
       categories={props.categories}
     />
   </div>
 );
+
+AddExpenseContainer.propTypes = {
+  logoutRemoveTokens: PropTypes.func.isRequired,
+  setExpenseAmount: PropTypes.func.isRequired,
+  setExpenseName: PropTypes.func.isRequired,
+  setExpenseCategory: PropTypes.func.isRequired,
+  addExpenseHandler: PropTypes.func.isRequired,
+  getLastExpense: PropTypes.func.isRequired,
+  lastExpense: PropTypes.object,
+  categories: PropTypes.arrayOf(PropTypes.object)
+};
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),

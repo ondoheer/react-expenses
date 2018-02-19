@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 
 import FlashBox from "../../partials/FlashBox";
@@ -47,5 +48,14 @@ const LoginForm = props => (
     </form>
   </div>
 );
+
+LoginForm.propTypes = {
+  loginHandler: PropTypes.func.isRequired,
+  setEmail: PropTypes.func.isRequired,
+  emailImput: PropTypes.string,
+  setPassword: PropTypes.func.isRequired,
+  passwordInput: PropTypes.string,
+  error: PropTypes.string
+};
 
 export default LoginForm;

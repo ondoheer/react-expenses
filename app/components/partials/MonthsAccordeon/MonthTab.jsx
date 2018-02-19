@@ -1,6 +1,7 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { yearMonthUserConverter } from '../../../utils/utils';
+import { yearMonthUserConverter } from "../../../utils/utils";
 
 const MonthTab = props => (
   <div
@@ -11,14 +12,20 @@ const MonthTab = props => (
       {yearMonthUserConverter(props.month.id).month}
     </h2>
     <div className="c-accordeon__month-amount"> S/ {props.month.total}</div>
-    <div 
+    <div
       style={{
-        fontSize: '1rem'
+        fontSize: "1rem"
       }}
       className={`${
-      props.accordeonOpenMonth ? 'icon-up-open' : 'icon-down-open'
-    }`} ></div>
+        props.accordeonOpenMonth ? "icon-up-open" : "icon-down-open"
+      }`}
+    />
   </div>
 );
 
+MonthTab.propTypes = {
+  toggleAccordeon: PropTypes.func.isRequired,
+  month: PropTypes.object.isRequired,
+  accordeonOpenMonth: PropTypes.bool.isRequired
+};
 export default MonthTab;

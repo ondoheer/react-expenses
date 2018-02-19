@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
 const MonthDetail = props => (
   <div className="c-accordeon__month-item__detail">
@@ -15,4 +16,7 @@ const MonthDetail = props => (
   </div>
 );
 
+MonthDetail.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.object)
+};
 export default MonthDetail;

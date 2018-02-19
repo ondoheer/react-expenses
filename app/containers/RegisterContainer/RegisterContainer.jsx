@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import Logo from "../../components/partials/Logo";
@@ -56,4 +57,15 @@ const RegisterContainer = props => (
   </div>
 );
 
+RegisterContainer.propTypes = {
+  setEmail: PropTypes.func.isRequired,
+  setPassword: PropTypes.func.isRequired,
+  setFullName: PropTypes.func.isRequired,
+  setConfirm: PropTypes.func.isRequired,
+  registerHandler: PropTypes.func.isRequired,
+  fullNameInput: PropTypes.string,
+  confirmInput: PropTypes.string,
+  passwordInput: PropTypes.string,
+  error: PropTypes.string
+};
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer);

@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
 const SearchExpensesForm = props => (
   <form onSubmit={props.getExpenses} className="c-form">
@@ -24,4 +25,9 @@ const SearchExpensesForm = props => (
   </form>
 );
 
+SearchExpensesForm.propTypes = {
+  getExpenses: PropTypes.func.isRequired,
+  searchInput: PropTypes.string,
+  setSearchInput: PropTypes.func.isRequired
+};
 export default SearchExpensesForm;

@@ -1,9 +1,10 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-import HeaderNav from '../../components/partials/HeaderNav';
-import AddExpenseButton from '../../components/partials/AddExpenseButton';
-import { logoutRemoveTokens } from '../../redux/modules/auth';
+import HeaderNav from "../../components/partials/HeaderNav";
+import AddExpenseButton from "../../components/partials/AddExpenseButton";
+import { logoutRemoveTokens } from "../../redux/modules/auth";
 
 const mapStateToProps = state => ({
   logoutRemoveTokens
@@ -19,4 +20,7 @@ const NotFoundContainer = props => (
   </div>
 );
 
+NotFoundContainer.propTypes = {
+  logoutRemoveTokens: PropTypes.func.isRequired
+};
 export default connect(mapStateToProps)(NotFoundContainer);

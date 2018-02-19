@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
 const AddCategoryForm = props => (
   <div className="c-form-container ">
@@ -33,4 +34,10 @@ const AddCategoryForm = props => (
   </div>
 );
 
+AddCategoryForm.propTypes = {
+  nameInput: PropTypes.string,
+  setCategoryName: PropTypes.func.isRequired,
+  categories: PropTypes.arrayOf(PropTypes.object),
+  addCategoryHandler: PropTypes.func.isRequired
+};
 export default AddCategoryForm;

@@ -1,5 +1,5 @@
-import React from 'react';
-import { dispatch } from 'react-redux';
+import React from "react";
+import PropTypes from "prop-types";
 
 const PaginatorForm = props => (
   <div className="c-pagination">
@@ -35,4 +35,14 @@ const PaginatorForm = props => (
   </div>
 );
 
+PaginatorForm.propTypes = {
+  getExpenses: PropTypes.func.isRequired,
+  page: PropTypes.number,
+  setPageInput: PropTypes.func.isRequired,
+  pages: PropTypes.number,
+  hasNext: PropTypes.bool,
+  hasPrev: PropTypes.bool,
+  decreasePage: PropTypes.func.isRequired,
+  increasePage: PropTypes.func.isRequired
+};
 export default PaginatorForm;

@@ -1,13 +1,14 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
-import MonthDetail from './MonthDetail';
-import MonthTab from './MonthTab';
+import MonthDetail from "./MonthDetail";
+import MonthTab from "./MonthTab";
 
 const MonthItem = props => (
   <div
     className={` c-accordeon__month-item
     c-accordeon__month-item${
-      props.accordeonOpenMonth ? '--open' : '--closed'
+      props.accordeonOpenMonth ? "--open" : "--closed"
     } `}
   >
     <MonthTab
@@ -19,4 +20,9 @@ const MonthItem = props => (
   </div>
 );
 
+MonthItem.propTypes = {
+  month: PropTypes.object.isRequired,
+  toggleAccordeon: PropTypes.func.isRequired,
+  accordeonOpenMonth: PropTypes.bool
+};
 export default MonthItem;

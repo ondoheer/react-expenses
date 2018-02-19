@@ -1,19 +1,19 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { lifecycle, compose } from 'recompose';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { lifecycle, compose } from "recompose";
 
-import HeaderNav from '../../components/partials/HeaderNav';
-import TotalExpenses from '../../components/partials/TotalExpenses';
-import MonthsAccordeon from '../../components/partials/MonthsAccordeon';
-import AddExpenseButton from '../../components/partials/AddExpenseButton';
+import HeaderNav from "../../components/partials/HeaderNav";
+import TotalExpenses from "../../components/partials/TotalExpenses";
+import MonthsAccordeon from "../../components/partials/MonthsAccordeon";
+import AddExpenseButton from "../../components/partials/AddExpenseButton";
 
-import { toggleAccordeonItem } from '../../redux/modules/accordeon';
-import { logoutRemoveTokens } from '../../redux/modules/auth';
+import { toggleAccordeonItem } from "../../redux/modules/accordeon";
+import { logoutRemoveTokens } from "../../redux/modules/auth";
 
-import { homeDataAction } from '../../redux/modules/homepage';
+import { homeDataAction } from "../../redux/modules/homepage";
 
 const mapStateToProps = state => {
-  
   return {
     accordeonOpenMonths: state.accordeon,
     months: state.homepage.months,
@@ -45,6 +45,12 @@ const HomeContainer = props => (
   </div>
 );
 
+HomeContainer.propTypes = {
+  logoutRemoveTokens: PropTypes.func.isRequired,
+  toggleAccordeon: PropTypes.func.isRequired,
+  months: PropTypes.arrayOf(PropTypes.object),
+  accordeonOpenMonths: PropTypes.arrayOf(PropTypes.object)
+};
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   lifecycle({

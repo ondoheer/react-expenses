@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import LoginForm from "../../components/forms/LoginForm";
@@ -41,4 +42,10 @@ const LoginContainer = props => {
   );
 };
 
+LoginContainer.propTypes = {
+  loginHandler: PropTypes.func.isRequired,
+  setEmail: PropTypes.func.isRequired,
+  setPassword: PropTypes.func.isRequired,
+  error: PropTypes.string
+};
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

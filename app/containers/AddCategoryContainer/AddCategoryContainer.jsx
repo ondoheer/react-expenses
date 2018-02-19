@@ -1,17 +1,18 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { lifecycle, compose } from 'recompose';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { lifecycle, compose } from "recompose";
 
-import HeaderNav from '../../components/partials/HeaderNav';
-import AddCategoryForm from '../../components/forms/AddCategoryForm';
+import HeaderNav from "../../components/partials/HeaderNav";
+import AddCategoryForm from "../../components/forms/AddCategoryForm";
 
-import { logoutRemoveTokens } from '../../redux/modules/auth';
+import { logoutRemoveTokens } from "../../redux/modules/auth";
 
 import {
   setCategoryName,
   getCategoriesAction,
   addCategoryAction
-} from '../../redux/modules/categories';
+} from "../../redux/modules/categories";
 
 const mapStateToProps = state => ({
   nameInput: state.categories.nameInput,
@@ -45,6 +46,12 @@ const AddCategoryContainer = props => (
   </div>
 );
 
+AddCategoryContainer.propTypes = {
+  logoutRemoveTokens: PropTypes.func.isRequired,
+  categories: PropTypes.arrayOf(PropTypes.object),
+  setCategoryName: PropTypes.func.isRequired,
+  addCategoryHandler: PropTypes.func.isRequired
+};
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   lifecycle({

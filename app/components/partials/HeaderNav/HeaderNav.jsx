@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
 
-import { NavLink } from 'react-router-dom';
-
-export default props => (
+const HeaderNav = props => (
   <nav className="c-top-nav u-bkg--main-color">
     <ul className="c-top-nav__list">
       <li className="c-top-nav__item">
@@ -27,3 +27,8 @@ export default props => (
     </ul>
   </nav>
 );
+
+HeaderNav.propTypes = {
+  logoutRemoveTokens: PropTypes.func.isRequired
+};
+export default HeaderNav;

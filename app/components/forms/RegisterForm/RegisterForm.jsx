@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import FlashBox from "../../partials/FlashBox";
 
@@ -72,4 +73,16 @@ const RegisterForm = props => (
   </div>
 );
 
+RegisterForm.propTypes = {
+  setFullName: PropTypes.func.isRequired,
+  fullNameInput: PropTypes.string,
+  setEmail: PropTypes.func.isRequired,
+  emailInput: PropTypes.string,
+  setPassword: PropTypes.func.isRequired,
+  passwordInput: PropTypes.string,
+  setConfirm: PropTypes.func.isRequired,
+  confirmInput: PropTypes.string,
+  registerHandler: PropTypes.func.isRequired,
+  error: PropTypes.string
+};
 export default RegisterForm;

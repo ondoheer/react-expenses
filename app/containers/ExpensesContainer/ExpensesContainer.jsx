@@ -1,24 +1,25 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { lifecycle, compose } from 'recompose';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { lifecycle, compose } from "recompose";
 
 // Components
-import HeaderNav from '../../components/partials/HeaderNav';
-import AddExpenseButton from '../../components/partials/AddExpenseButton';
-import SearchExpensesForm from '../../components/forms/SearchExpensesForm';
-import ExpensesTable from '../../components/partials/ExpensesTable';
+import HeaderNav from "../../components/partials/HeaderNav";
+import AddExpenseButton from "../../components/partials/AddExpenseButton";
+import SearchExpensesForm from "../../components/forms/SearchExpensesForm";
+import ExpensesTable from "../../components/partials/ExpensesTable";
 
-import PaginatorForm from '../../components/forms/PaginatorForm';
+import PaginatorForm from "../../components/forms/PaginatorForm";
 
 // Reducers
-import { logoutRemoveTokens } from '../../redux/modules/auth';
+import { logoutRemoveTokens } from "../../redux/modules/auth";
 import {
   getFilteredExpenses,
   setSearchInput,
   setPage,
   getNextPage,
   getPreviousPage
-} from '../../redux/modules/expenses';
+} from "../../redux/modules/expenses";
 
 const mapStateToProps = state => ({
   logoutRemoveTokens,
@@ -82,6 +83,20 @@ const ExpensesContainer = props => (
     <AddExpenseButton />
   </div>
 );
+
+ExpensesContainer.propTypes = {
+  logoutRemoveTokens: PropTypes.func.isRequired,
+  setSearchInput: PropTypes.func.isRequired,
+  getExpenses: PropTypes.func.isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.object),
+  page: PropTypes.number,
+  pages: PropTypes.number,
+  has_next: PropTypes.bool,
+  has_prev: PropTypes.bool,
+  setPageInput: PropTypes.func.isRequired,
+  getPreviousPage: PropTypes.func.isRequired,
+  getNextPage: PropTypes.func.isRequired
+};
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
