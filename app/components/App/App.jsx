@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 import history from "../../index";
 
+import ProtectedRedirectToLogin from "../RouteHelpers/ProtectedRedirectToLogin";
+import BlockedIfLogedIn from "../RouteHelpers/BlockedIfLogedIn";
 import HomeContainer from "../../containers/HomeContainer";
 import LoginContainer from "../../containers/LoginContainer";
 import RegisterContainer from "../../containers/RegisterContainer";
@@ -11,6 +13,11 @@ import AddCategoryContainer from "../../containers/AddCategoryContainer";
 import ExpensesContainer from "../../containers/ExpensesContainer";
 
 import NotFoundContainer from "../../containers/NotFoundContainer";
+
+const RedirectToLogin = ({ children }) => {
+  const isLoged = localStorage.getItem("access_token");
+  return isLoged ? children : <LoginContainer />;
+};
 
 const mapStateToProps = state => ({});
 
@@ -42,6 +49,7 @@ const App = props => {
               return isLoged ? <HomeContainer /> : <Redirect to="/login" />;
             }}
           />
+
           <Route
             path="/expense/create"
             render={() => {

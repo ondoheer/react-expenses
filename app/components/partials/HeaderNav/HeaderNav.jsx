@@ -6,7 +6,7 @@ const HeaderNav = props => (
   <nav className="c-top-nav u-bkg--main-color">
     <ul className="c-top-nav__list">
       <li className="c-top-nav__item">
-        <NavLink exact to="/">
+        <NavLink exact to="/main">
           Home
         </NavLink>
       </li>
