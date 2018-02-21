@@ -16,14 +16,13 @@ import NotFoundContainer from "../../containers/NotFoundContainer";
 const mapStateToProps = state => ({});
 
 const App = props => {
-  const isLoged = localStorage.getItem("access_token");
   return (
     <Router history={history}>
       <div className="container">
         <Switch>
           <EnhancedLoginRoute exact path="/login" />
           <EnhancedRegisterRoute exact path="/register" />
-          <EnhancedHomeRoute exact path="/" />
+          <EnhancedHomeRoute exact path="/main" />
           <EnhancedExpenseCreateRoute exact path="/expense/create" />
           <EnhancedExpensesRoute exact path="/expense" />
           <EnhancedCategoryCreateRoute exact path="/category/create" />

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { lifecycle, compose } from "recompose";
 
 import HeaderNav from "../../components/partials/HeaderNav";
@@ -46,6 +47,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(addExpenseAction());
     },
     getLastExpense: () => {
+      console.log("called from the add expense container");
       dispatch(getLastExpense());
     }
   };
@@ -72,11 +74,12 @@ AddExpenseContainer.propTypes = {
   setExpenseCategory: PropTypes.func.isRequired,
   addExpenseHandler: PropTypes.func.isRequired,
   getLastExpense: PropTypes.func.isRequired,
-  lastExpense: PropTypes.object,
+  lastExpense: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   categories: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default compose(
+  withRouter,
   connect(mapStateToProps, mapDispatchToProps),
   lifecycle({
     componentWillMount() {

@@ -1,13 +1,14 @@
 import history from "../index";
+// import logout
+import { URL } from "../config";
 
-const BASE_URL = "http://localhost:5000";
 /**
  *
  * @param {enpoint to call the ajax request} route
  * @param {params to add to the fetch request} params
  */
 
-const logout = () => {
+export const logout = () => {
   localStorage.removeItem("access_token");
   localStorage.removeItem("refresh_token");
   history.push("/login");
@@ -25,7 +26,7 @@ const fetchWithJWT = (route, queryArgs, params) => {
   params.headers.set("Authorization", `Bearer ${access_token}`);
 
   // validate the token
-  return fetch(`${BASE_URL}/${route}?${queryArgs}`, params)
+  return fetch(`${URL}/${route}?${queryArgs}`, params)
     .then(res => {
       if (res.status == 401 || res.status == 422) {
         const refresh_token = localStorage.getItem("refresh_token");
@@ -35,7 +36,7 @@ const fetchWithJWT = (route, queryArgs, params) => {
         params.headers.set("Authorization", `Bearer ${refresh_token}`);
         params.method = "POST";
 
-        return fetch(`${BASE_URL}/refresh`, params)
+        return fetch(`${URL}/refresh`, params)
           .then(res => {
             if (!res.ok) {
               return logout();
@@ -46,7 +47,7 @@ const fetchWithJWT = (route, queryArgs, params) => {
             localStorage.setItem("access_token", json.access_token);
             params.headers.set("Authorization", `Bearer ${json.access_token}`);
             params.method = originalMethod;
-            return fetch(`${BASE_URL}/${route}?${queryArgs}`, params);
+            return fetch(`${URL}/${route}?${queryArgs}`, params);
           });
       }
       return res; // basic response

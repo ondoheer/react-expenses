@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { lifecycle, compose } from "recompose";
+import { withRouter } from "react-router-dom";
 
 import Logo from "../../components/partials/Logo";
 import RegisterForm from "../../components/forms/RegisterForm";
@@ -68,4 +70,7 @@ RegisterContainer.propTypes = {
   passwordInput: PropTypes.string,
   error: PropTypes.string
 };
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(RegisterContainer);

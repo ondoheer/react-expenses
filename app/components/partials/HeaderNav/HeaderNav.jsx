@@ -19,7 +19,7 @@ const HeaderNav = props => (
       <li className="c-top-nav__item c-c-top-nav__item ">
         <button
           className="c-button c-button-top-nav"
-          onClick={props.logoutRemoveTokens}
+          onClick={() => props.logoutRemoveTokens()}
         >
           Logout
         </button>

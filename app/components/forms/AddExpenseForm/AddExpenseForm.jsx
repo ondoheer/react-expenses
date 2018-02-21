@@ -61,8 +61,9 @@ const AddExpenseForm = props => (
       </button>
 
       <div className="c-info-box c-info-box--main-color">
-        <strong>last expense </strong> <br /> {props.lastExpense.name} S/
-        {props.lastExpense.amount}
+        <strong>last expense </strong> <br />{" "}
+        {props.lastExpense ? props.lastExpense.name : "no expenses yet"} S/
+        {props.lastExpense ? props.lastExpense.amount : "00.00"}
       </div>
     </form>
   </div>
@@ -76,6 +77,6 @@ AddExpenseForm.propTypes = {
   nameInput: PropTypes.string,
   setExpenseCategory: PropTypes.func.isRequired,
   categories: PropTypes.arrayOf(PropTypes.object),
-  lastExpense: PropTypes.object
+  lastExpense: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
 };
 export default AddExpenseForm;

@@ -1,5 +1,7 @@
 import history from "../../index";
 import { requestError, requestsErrorMap, CLEAR_ERROR } from "./errors";
+import { URL } from "../../config";
+
 /**
  * constants
  */
@@ -87,32 +89,18 @@ export default (
 export const logoutRemoveTokens = () => {
   localStorage.removeItem("access_token");
   localStorage.removeItem("refresh_token");
-
-  history.push("/");
+  console.log(`this is the current window location ${window.location}`);
+  history.push("/login");
+  console.log(`this is the current window location ${window.location}`);
 };
 
 /**
  * epics
  */
 
-const URL = "http://localhost:5000";
 const BaseParams = {
   method: "POST",
   headers: new Headers({ "Content-Type": "application/json" })
-};
-let queryArgs = "";
-
-/**
- * So far the only way I have found is to push when you go somewhere else and
- * to just return when you can continue. I need to try it with return false
- * after I have solved the callback hell
- */
-const AuthMiddleware = () => {
-  let access_token = localStorage.getItem("access_token");
-  if (!access_token) {
-    history.push("/login");
-  } else {
-  }
 };
 
 export const loginAction = () => {
@@ -140,8 +128,13 @@ export const loginAction = () => {
         dispatch({ type: CLEAR_AUTH_FORMS_DATA });
         localStorage.setItem("access_token", json.access_token);
         localStorage.setItem("refresh_token", json.refresh_token);
-        console.log("from login before pushing new address");
-        history.push("/");
+        // console.log("from login before pushing new route");
+        // console.log(`this is the current window location ${window.location}`);
+
+        history.push("/main");
+        // window.location = "/"; // HAACK
+        // console.log("from login after pushing new route");
+        // console.log(`this is the current window location ${window.location}`);
       })
       .catch(error => {
         dispatch(requestError(requestsErrorMap[error.message]));
@@ -185,7 +178,16 @@ export const registerAction = () => {
 
         localStorage.setItem("access_token", json.access_token);
         localStorage.setItem("refresh_token", json.refresh_token);
-        history.push("/");
+        console.log("from login before pushing new route");
+        console.log(`this is the current history location ${history}`);
+        console.log(history);
+        const prevHistory = { ...history };
+        console.log(prevHistory);
+        history.push("/main");
+        console.log("from login after pushing new route");
+        console.log(`this is the current history location ${history}`);
+        const lastHistory = { ...history };
+        console.log(lastHistory);
       })
       .catch(error => {
         console.error(error.message);

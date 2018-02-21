@@ -1,5 +1,5 @@
 import fetchWithJWT from "../../utils/fetchWithJWT";
-
+import { URL } from "../../config";
 /****
  * Constants
  */
@@ -34,7 +34,7 @@ export default (
 /**
  * epics
  */
-const URL = "http://localhost:5000";
+
 const BaseParams = {
   method: "POST",
   headers: new Headers({ "Content-Type": "application/json" })
@@ -43,8 +43,6 @@ const BaseParams = {
 export const homeDataAction = () => {
   return (dispatch, getState) => {
     const state = getState();
-
-    const access_token = localStorage.getItem("access_token");
 
     const params = { ...BaseParams, method: "GET" };
 

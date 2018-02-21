@@ -1,5 +1,6 @@
 import history from "../../index";
 import fetchWithJWT from "../../utils/fetchWithJWT";
+import { URL } from "../../config";
 /**
  * constants
  */
@@ -114,7 +115,7 @@ export default (
 /**
  * epics
  */
-const URL = "http://localhost:5000";
+
 const BaseParams = {
   method: "POST",
   headers: new Headers({ "Content-Type": "application/json" })

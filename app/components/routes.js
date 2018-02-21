@@ -10,9 +10,12 @@ import {
   ProtectedRoute
 } from "./hocs/AuthorizedRoutes/AuthorizedRoutes";
 
-export const EnhancedLoginRoute = OccultWhenLogedInRoute("/", LoginContainer);
+export const EnhancedLoginRoute = OccultWhenLogedInRoute(
+  "/main",
+  LoginContainer
+);
 export const EnhancedRegisterRoute = OccultWhenLogedInRoute(
-  "/",
+  "/main",
   RegisterContainer
 );
 export const EnhancedHomeRoute = ProtectedRoute("/login", HomeContainer);

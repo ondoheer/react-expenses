@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { lifecycle, compose } from "recompose";
+import { withRouter } from "react-router-dom";
 
 import HeaderNav from "../../components/partials/HeaderNav";
 import TotalExpenses from "../../components/partials/TotalExpenses";
@@ -26,6 +27,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(toggleAccordeonItem(id));
     },
     getHomeData: () => {
+      console.log("I am being caslled form the home container");
       dispatch(homeDataAction());
     }
   };
@@ -33,7 +35,10 @@ const mapDispatchToProps = dispatch => {
 
 const HomeContainer = props => (
   <div className="c-main-container">
-    <HeaderNav logoutRemoveTokens={props.logoutRemoveTokens} />
+    <HeaderNav
+      logoutRemoveTokens={props.logoutRemoveTokens}
+      history={props.history}
+    />
     <TotalExpenses />
     <MonthsAccordeon
       toggleAccordeon={props.toggleAccordeon}
@@ -49,9 +54,10 @@ HomeContainer.propTypes = {
   logoutRemoveTokens: PropTypes.func.isRequired,
   toggleAccordeon: PropTypes.func.isRequired,
   months: PropTypes.arrayOf(PropTypes.object),
-  accordeonOpenMonths: PropTypes.arrayOf(PropTypes.object)
+  accordeonOpenMonths: PropTypes.object
 };
 export default compose(
+  withRouter,
   connect(mapStateToProps, mapDispatchToProps),
   lifecycle({
     componentWillMount() {

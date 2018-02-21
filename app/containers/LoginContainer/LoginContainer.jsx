@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { compose } from "recompose";
 
 import LoginForm from "../../components/forms/LoginForm";
 import Logo from "../../components/partials/Logo";
@@ -12,7 +14,7 @@ const mapStateToProps = state => ({
   error: state.error.error
 });
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     setEmail: evt => {
       dispatch(setEmail(evt.target.value));
@@ -23,12 +25,14 @@ const mapDispatchToProps = dispatch => {
 
     loginHandler: evt => {
       evt.preventDefault();
-      dispatch(loginAction());
+      dispatch(loginAction(ownProps.history));
     }
   };
 };
 
 const LoginContainer = props => {
+  // console.log("from container");
+  // console.log(props.history);
   return (
     <div className="login-container u-bkg--main-color">
       <Logo />
@@ -48,4 +52,8 @@ LoginContainer.propTypes = {
   setPassword: PropTypes.func.isRequired,
   error: PropTypes.string
 };
-export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(LoginContainer);
