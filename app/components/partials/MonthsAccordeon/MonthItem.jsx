@@ -23,6 +23,6 @@ const MonthItem = props => (
 MonthItem.propTypes = {
   month: PropTypes.object.isRequired,
   toggleAccordeon: PropTypes.func.isRequired,
-  accordeonOpenMonth: PropTypes.bool
+  accordeonOpenMonth: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
 };
 export default MonthItem;

@@ -26,6 +26,6 @@ const MonthTab = props => (
 MonthTab.propTypes = {
   toggleAccordeon: PropTypes.func.isRequired,
   month: PropTypes.object.isRequired,
-  accordeonOpenMonth: PropTypes.bool.isRequired
+  accordeonOpenMonth: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
 };
 export default MonthTab;
