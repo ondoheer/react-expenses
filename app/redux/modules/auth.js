@@ -101,6 +101,7 @@ export const logoutRemoveTokens = () => {
 const BaseParams = {
   method: "POST",
   headers: new Headers({ "Content-Type": "application/json" })
+  // method: "cors"
 };
 
 export const loginAction = () => {

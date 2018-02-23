@@ -47,7 +47,6 @@ const mapDispatchToProps = dispatch => {
       dispatch(addExpenseAction());
     },
     getLastExpense: () => {
-      console.log("called from the add expense container");
       dispatch(getLastExpense());
     }
   };

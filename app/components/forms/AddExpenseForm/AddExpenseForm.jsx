@@ -48,7 +48,11 @@ const AddExpenseForm = props => (
           id="category"
           className="c-form__input c-form__input--select"
           onChange={props.setExpenseCategory}
+          defaultValue="0"
         >
+          <option value="0" disabled hidden>
+            Choose Category
+          </option>
           {props.categories.map(cat => (
             <option key={cat.id} value={cat.id}>
               {cat.label}
@@ -61,9 +65,10 @@ const AddExpenseForm = props => (
       </button>
 
       <div className="c-info-box c-info-box--main-color">
-        <strong>last expense </strong> <br />{" "}
+        <div className="c-info-box__title">last expense </div> <br />{" "}
         {props.lastExpense ? props.lastExpense.name : "no expenses yet"} S/
-        {props.lastExpense ? props.lastExpense.amount : "00.00"}
+        {props.lastExpense ? props.lastExpense.amount : ""}{" "}
+        {props.lastExpense ? props.lastExpense.date : ""}
       </div>
     </form>
   </div>
